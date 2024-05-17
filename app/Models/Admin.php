@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Contracts\IModel;
 use App\Core\Cursor;
+use App\Core\Model;
 
-class Admin
+class Admin extends Model implements IModel
 {
     private static string $table = 'admin';
-    private Cursor $db;
     public ?int $id;
     public string $nama_pengguna;
     public string $kata_sandi;
