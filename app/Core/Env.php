@@ -6,7 +6,7 @@ use Dotenv\Dotenv;
 
 class Env
 {
-    public static function parse($dir): void
+    public static function set($dir): void
     {
         $dotenv = Dotenv::createImmutable($dir);
         $dotenv->load();

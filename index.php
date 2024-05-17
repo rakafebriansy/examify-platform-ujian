@@ -7,7 +7,7 @@ use App\Core\Cursor;
 use App\Core\Env;
 use App\Models\Admin;
 
-Env::parse(__DIR__);
+Env::set(__DIR__);
 
 var_dump(Admin::find(1));
 
