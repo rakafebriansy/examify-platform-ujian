@@ -1,16 +1,18 @@
 <?php
 
 namespace App\Models;
+
 use App\Contracts\IModel;
 use App\Core\Cursor;
 use App\Core\Model;
 
-class Token extends Model implements IModel
+class Soal extends Model implements IModel
 {
-    private static string $table = 'token';
+    private static string $table = 'soal';
     public ?int $id;
-    public string $token;
-    public int $id_admin;
+    public string $pertanyaan;
+    public string $kunci_jawaban;
+    public int $id_guru;
     
     public function __construct() {
         parent::__construct();
@@ -18,8 +20,9 @@ class Token extends Model implements IModel
     public function insert(): bool
     {
         $data = [
-            'token' => $this->token,
-            'id_admin' => $this->id_admin
+            'pertanyaan' => $this->pertanyaan,
+            'kunci_jawaban' => $this->kunci_jawaban,
+            'id_guru' => $this->id_guru,
         ];
         $result = $this->db->create(self::$table,$data);
         return $result;
@@ -27,32 +30,34 @@ class Token extends Model implements IModel
     public function update(): bool
     {
         $data = [
-            'token' => $this->token,
-            'id_admin' => $this->id_admin
+            'pertanyaan' => $this->pertanyaan,
+            'kunci_jawaban' => $this->kunci_jawaban,
+            'id_guru' => $this->id_guru,
         ];
         $result = $this->db->update(self::$table, $data, $this->id);
         return $result;
     }
     public function delete(): bool
     {
-        $result = $this->db->delete(self::$table,$this->id);
-        return $result;
+        $this->db->delete(self::$table,$this->id);
+        return true;
     }
     public static function find(int $id): object|null
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, ['id','=',$id]);
-
+        
         if(!isset($result)) {
             return null;
         }
 
-        $token = new Token();
-        $token->id = $result['id'];
-        $token->token = $result['token'];
-        $token->id_admin = $result['id_admin'];
+        $soal = new MataPelajaran();
+        $soal->id = $result['id'];
+        $soal->nama_pengguna = $result['pertanyaan'];
+        $soal->nama_pengguna = $result['kunci_jawaban'];
+        $soal->nama_pengguna = $result['id_guru'];
 
-        return $token;
+        return $soal;
     }    
     public static function all(): array|null
     {
@@ -62,9 +67,9 @@ class Token extends Model implements IModel
             return null;
         }
 
-        $tokens = $db->readMany(self::$table);
+        $soals = $db->readMany(self::$table);
         $db->close();
-        return $tokens;
+        return $soals;
     }
 }
 

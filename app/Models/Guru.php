@@ -54,14 +54,14 @@ class Guru extends Model implements IModel
             return null;
         }
 
-        $mata_pelajaran = new MataPelajaran();
-        $mata_pelajaran->id = $result['id'];
-        $mata_pelajaran->nip = $result['nip'];
-        $mata_pelajaran->nama = $result['nama'];
-        $mata_pelajaran->jabatan = $result['jabatan'];
-        $mata_pelajaran->kata_sandi = $result['kata_sandi'];
+        $guru = new MataPelajaran();
+        $guru->id = $result['id'];
+        $guru->nip = $result['nip'];
+        $guru->nama = $result['nama'];
+        $guru->jabatan = $result['jabatan'];
+        $guru->kata_sandi = $result['kata_sandi'];
 
-        return $mata_pelajaran;
+        return $guru;
     }    
     public static function all(): array|null
     {

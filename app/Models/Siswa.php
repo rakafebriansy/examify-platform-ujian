@@ -75,9 +75,9 @@ class Siswa extends Model implements IModel
             return null;
         }
 
-        $admins = $db->readMany(self::$table);
+        $siswas = $db->readMany(self::$table);
         $db->close();
-        return $admins;
+        return $siswas;
     }
 }
 

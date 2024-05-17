@@ -59,9 +59,9 @@ class MataPelajaran extends Model implements IModel
             return null;
         }
         
-        $admins = $db->readMany(self::$table);
+        $mata_pelajarans = $db->readMany(self::$table);
         $db->close();
-        return $admins;
+        return $mata_pelajarans;
     }
 }
 
