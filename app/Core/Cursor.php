@@ -6,9 +6,6 @@ use App\Core\Database;
 
 class Cursor extends Database
 {
-    public function __construct($dir) {
-        parent::__construct($dir);
-    }
     public function connect(): void
     {
         parent::connect();

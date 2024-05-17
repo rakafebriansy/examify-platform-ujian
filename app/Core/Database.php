@@ -4,11 +4,8 @@ namespace App\Core;
 
 class Database
 {
-    private \PDO|null $connection = null;
+    protected \PDO|null $connection = null;
 
-    public function __construct($dir) {
-        Env::parse($dir);
-    }
     public function connect(): void
     {
         try {

@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use Config\Database;
+use App\Core\Cursor;
 
 class Admin
 {
     private static string $table = 'admin';
-    private Database $db;
+    private Cursor $db;
     public ?int $id;
     public string $nama_pengguna;
     public string $kata_sandi;
     
     public function __construct() {
-        $this->db = new Database();
+        $this->db = new Cursor();
     }
     public function insert(): bool
     {
@@ -58,7 +58,7 @@ class Admin
     }
     public static function find(int $id): array
     {
-        $db = new Database();
+        $db = new Cursor();
         try {
             $db->connect();
             $result = $db->readOne(self::$table, ['id','=',$id]);
@@ -70,7 +70,7 @@ class Admin
     }    
     public static function all(): array|null
     {
-        $db = new Database();
+        $db = new Cursor();
         try {
             $db->connect();
             $admins = $db->readMany(self::$table);
