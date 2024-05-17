@@ -21,14 +21,8 @@ class Token extends Model implements IModel
             'token' => $this->token,
             'id_admin' => $this->id_admin
         ];
-        try {
-            $this->db->connect();
-            $this->db->create(self::$table,$data);
-            $this->db->close();
-            return true;
-        } catch (\PDOException $e) {
-            return false;
-        }
+        $result = $this->db->create(self::$table,$data);
+        return $result;
     }
     public function update(): bool
     {
@@ -36,55 +30,41 @@ class Token extends Model implements IModel
             'token' => $this->token,
             'id_admin' => $this->id_admin
         ];
-        try {
-            $this->db->connect();
-            $this->db->update(self::$table, $data, $this->id);
-            $this->db->close();
-            return true;
-        } catch (\PDOException $e) {
-            return false;
-        }
+        $result = $this->db->update(self::$table, $data, $this->id);
+        return $result;
     }
     public function delete(): bool
     {
-        try {
-            $this->db->connect();
-            $this->db->delete(self::$table,$this->id);
-            $this->db->close();
-            return true;
-        } catch (\PDOException $e) {
-            return false;
-        }
+        $result = $this->db->delete(self::$table,$this->id);
+        return $result;
     }
     public static function find(int $id): object|null
     {
         $db = new Cursor();
-        try {
-            $db->connect();
-            $result = $db->readOne(self::$table, ['id','=',$id]);
-            $db->close();
+        $result = $db->readOne(self::$table, ['id','=',$id]);
 
-            $token = new Token();
-            $token->id = $result['id'];
-            $token->token = $result['token'];
-            $token->id_admin = $result['id_admin'];
-
-            return $token;
-        } catch (\PDOException $e) {
-            throw $e;
+        if(!isset($result)) {
+            return null;
         }
+
+        $token = new Token();
+        $token->id = $result['id'];
+        $token->token = $result['token'];
+        $token->id_admin = $result['id_admin'];
+
+        return $token;
     }    
     public static function all(): array|null
     {
         $db = new Cursor();
-        try {
-            $db->connect();
-            $admins = $db->readMany(self::$table);
-            $db->close();
-            return $admins;
-        } catch (\PDOException $e) {
+
+        if(!isset($result)) {
             return null;
         }
+
+        $admins = $db->readMany(self::$table);
+        $db->close();
+        return $admins;
     }
 }
 
