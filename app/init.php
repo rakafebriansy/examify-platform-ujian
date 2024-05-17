@@ -10,5 +10,6 @@ require 'app/Core/Model.php';
 require 'app/Core/Router.php';
 require 'app/Core/View.php';
 require 'app/Models/Admin.php';
+require 'app/Models/Token.php';
 
 ?>

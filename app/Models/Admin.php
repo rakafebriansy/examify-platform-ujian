@@ -14,7 +14,7 @@ class Admin extends Model implements IModel
     public string $kata_sandi;
     
     public function __construct() {
-        $this->db = new Cursor();
+        parent::__construct();
     }
     public function insert(): bool
     {
@@ -57,14 +57,20 @@ class Admin extends Model implements IModel
             return false;
         }
     }
-    public static function find(int $id): array
+    public static function find(int $id): object|null
     {
         $db = new Cursor();
         try {
             $db->connect();
             $result = $db->readOne(self::$table, ['id','=',$id]);
             $db->close();
-            return $result;
+
+            $admin = new Admin();
+            $admin->id = $result['id'];
+            $admin->nama_pengguna = $result['nama_pengguna'];
+            $admin->kata_sandi = $result['kata_sandi'];
+
+            return $admin;
         } catch (\PDOException $e) {
             throw $e;
         }
