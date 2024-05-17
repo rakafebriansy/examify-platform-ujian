@@ -6,13 +6,14 @@ use App\Contracts\IModel;
 use App\Core\Cursor;
 use App\Core\Model;
 
-class Guru extends Model implements IModel
+class Siswa extends Model implements IModel
 {
-    private static string $table = 'guru';
+    private static string $table = 'siswa';
     public ?int $id;
-    public string $nip;
+    public string $nis;
     public string $nama;
-    public string $jabatan;
+    public string $jurusan;
+    public string $kelas;
     public string $kata_sandi;
     
     public function __construct() {
@@ -21,9 +22,10 @@ class Guru extends Model implements IModel
     public function insert(): bool
     {
         $data = [
-            'nip' => $this->nip,
+            'nis' => $this->nis,
             'nama' => $this->nama,
-            'jabatan' => $this->jabatan,
+            'jurusan' => $this->jurusan,
+            'kelas' => $this->kelas,
             'kata_sandi' => $this->kata_sandi,
         ];
         $result = $this->db->create(self::$table,$data);
@@ -32,9 +34,10 @@ class Guru extends Model implements IModel
     public function update(): bool
     {
         $data = [
-            'nip' => $this->nip,
+            'nis' => $this->nis,
             'nama' => $this->nama,
-            'jabatan' => $this->jabatan,
+            'jurusan' => $this->jurusan,
+            'kelas' => $this->kelas,
             'kata_sandi' => $this->kata_sandi,
         ];
         $result = $this->db->update(self::$table, $data, $this->id);
@@ -56,10 +59,11 @@ class Guru extends Model implements IModel
 
         $mata_pelajaran = new MataPelajaran();
         $mata_pelajaran->id = $result['id'];
-        $mata_pelajaran->nip = $result['nip'];
-        $mata_pelajaran->nama = $result['nama'];
-        $mata_pelajaran->jabatan = $result['jabatan'];
-        $mata_pelajaran->kata_sandi = $result['kata_sandi'];
+        $mata_pelajaran->nama_pengguna = $result['nis'];
+        $mata_pelajaran->nama_pengguna = $result['nama'];
+        $mata_pelajaran->nama_pengguna = $result['jurusan'];
+        $mata_pelajaran->nama_pengguna = $result['kelas'];
+        $mata_pelajaran->nama_pengguna = $result['kata_sandi'];
 
         return $mata_pelajaran;
     }    

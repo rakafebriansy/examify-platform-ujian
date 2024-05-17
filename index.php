@@ -10,13 +10,16 @@ use App\Models\Token;
 
 Env::set(__DIR__);
 
-$admin = Admin::find(1);
-$token = new Token();
-$token->token = uniqid();
-$token->id_admin = $admin->id;
-$result = $token->insert();
-$result = Token::find(1);
-var_dump($result);
+// $admin = Admin::find(1);
+// $token = new Token();
+// $token->token = uniqid();
+// $token->id_admin = $admin->id;
+// $result = $token->insert();
+// $result = Token::find(1);
+$token = Token::find(1);
+$res = $token->delete();
+
+var_dump($res);
 
 
 // Router::add('/', 'GET', function () { return View::set('home'); });
