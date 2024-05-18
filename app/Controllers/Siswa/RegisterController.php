@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Controllers\Guru;
-use App\Models\Guru;
-use App\Request\GuruRegisterRequest;
+namespace App\Controllers\Siswa;
 
 class RegisterController
 {
