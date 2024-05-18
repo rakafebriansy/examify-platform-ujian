@@ -20,12 +20,12 @@ class RegisterController
         $token->token = uniqid();
         $token->id_admin = $id;
         if($token->insert()) {
-            $message['success'] = 'Token berhasil ditambahkan.';
+            $message = 'Token berhasil ditambahkan.';
             $_SESSION['success'] = $message;
             header('Location: /admin/token');
             exit;
         }
-        $message['errors'] = 'Nama pengguna atau kata sandi salah.';
+        $message = 'Nama pengguna atau kata sandi salah.';
         $_SESSION['errors'] = $message;
         header('Location: /admin/token');
         exit;

@@ -20,17 +20,17 @@ class LoginController
         $request = $_GET;
         if ($this->guru_login_request->check($request)) {
             $guru = Guru::findBy('nama',$request['nama']);
-            if(isset($guru) && $guru->kata_sandi == $request['kata_sandi']){
+            if(isset($guru) && password_verify($request['kata_sandi'],$guru->kata_sandi)){
                 $_SESSION['id_guru'] = $guru->id;
                 header('Location: /guru/dashboard');
                 exit;
             }
-            $message['errors'] = 'Nama atau kata sandi salah.';
+            $message = 'Nama atau kata sandi salah.';
             $_SESSION['errors'] = $message;
             header('Location: /guru/register');
             exit;
         }
-        $message['name'] = $this->guru_login_request->getMessage();
+        $message = $this->guru_login_request->getMessage();
         $_SESSION['errors'] = $message;
         header('Location: /guru/register');
         exit; 
