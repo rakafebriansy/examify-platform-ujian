@@ -2,9 +2,11 @@
 
 namespace App\Controllers\Admin;
 
+use App\Core\View;
 use App\Models\Admin;
 use App\Models\Token;
 use App\Request\AdminLoginRequest;
+use App\Request\AdminTokenRequest;
 
 class RegisterController
 {
@@ -12,23 +14,18 @@ class RegisterController
     {
         
     }
-    public function token(): bool
+    public function token(): void
     {
-        $message = [];
         $id = $_SESSION['id_admin'];
         $token = new Token();
         $token->token = uniqid();
         $token->id_admin = $id;
         if($token->insert()) {
             $message = 'Token berhasil ditambahkan.';
-            $_SESSION['success'] = $message;
-            header('Location: /admin/token');
-            exit;
+            View::redirectWith('/admin/token',$message);
         }
         $message = 'Nama pengguna atau kata sandi salah.';
-        $_SESSION['errors'] = $message;
-        header('Location: /admin/token');
-        exit;
+        View::redirectWith('/admin/token',$message,true);
     }
 }
 

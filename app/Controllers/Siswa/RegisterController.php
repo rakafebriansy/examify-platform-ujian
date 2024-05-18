@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Controllers\Siswa;
+use App\Core\View;
 use App\Models\Siswa;
 use App\Request\SiswaRegisterRequest;
 
 class RegisterController
 {
-    private SiswaRegisterRequest $guru_register_request;
+    private SiswaRegisterRequest $siswa_register_request;
     public function __construct() {
-        $this->guru_register_request = new SiswaRegisterRequest();
+        $this->siswa_register_request = new SiswaRegisterRequest();
     }
     public function setRegister()
     {
@@ -17,7 +18,7 @@ class RegisterController
     public function register()
     {
         $request = $_GET;
-        if ($this->guru_register_request->check($request)) {
+        if ($this->siswa_register_request->check($request)) {
             $checked = Siswa::findBy('nama',$request['nama']);
             if(!isset($checked)) {
                 $kata_sandi = password_hash($request['kata_sandi'],PASSWORD_DEFAULT);
@@ -31,15 +32,13 @@ class RegisterController
                 $siswa->insert();
     
                 $message = 'Akun telah terdaftar';
-                $_SESSION['success'] = $message;
-                header('Location: /siswa/login');
-                exit;
+                View::redirectWith('/siswa/login',$message);
             }
+            $message = 'Akun gagal dibuat';
+            View::redirectWith('/siswa/register',$message, true);
         }
-        $message = $this->guru_register_request->getMessage();
-        $_SESSION['errors'] = $message;
-        header('Location: /siswa/register');
-        exit; 
+        $message = $this->siswa_register_request->getMessage();
+        View::redirectWith('/siswa/register',$message, true);
     }
 }
 

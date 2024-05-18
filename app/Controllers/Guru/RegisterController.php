@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers\Guru;
+use App\Core\View;
 use App\Models\Guru;
 use App\Request\GuruRegisterRequest;
 
@@ -27,18 +28,19 @@ class RegisterController
                 $guru->nama = $request['nama'];
                 $guru->jabatan = $request['jabatan'];
                 $guru->kata_sandi = $kata_sandi;
-                $guru->insert();
-    
-                $message = 'Akun telah terdaftar';
-                $_SESSION['success'] = $message;
-                header('Location: /guru/login');
-                exit;
+
+                if($guru->insert()) {
+                    $message = 'Akun berhasil didaftarkan';
+                    View::redirectWith('/guru/login',$message);
+                }
+                $message = 'Akun gagal dibuat';
+                View::redirectWith('/guru/register',$message, true);
             }
+            $message = 'Akun dengan nama tersebut telah terdaftar';
+            View::redirectWith('/guru/register',$message, true);
         }
         $message = $this->guru_register_request->getMessage();
-        $_SESSION['errors'] = $message;
-        header('Location: /guru/register');
-        exit; 
+        View::redirectWith('/guru/register',$message, true);
     }
 }
 

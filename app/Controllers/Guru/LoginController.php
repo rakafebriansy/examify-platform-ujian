@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers\Guru;
+use App\Core\View;
 use App\Models\Guru;
 use App\Request\GuruLoginRequest;
 
@@ -16,24 +17,19 @@ class LoginController
     }
     public function login()
     {
-        $message = [];
         $request = $_GET;
         if ($this->guru_login_request->check($request)) {
             $guru = Guru::findBy('nama',$request['nama']);
             if(isset($guru) && password_verify($request['kata_sandi'],$guru->kata_sandi)){
                 $_SESSION['id_guru'] = $guru->id;
-                header('Location: /guru/dashboard');
-                exit;
+                View::redirectTo('/guru/dashboard');
+
             }
             $message = 'Nama atau kata sandi salah.';
-            $_SESSION['errors'] = $message;
-            header('Location: /guru/register');
-            exit;
+            View::redirectWith('/guru/register',$message,true);
         }
         $message = $this->guru_login_request->getMessage();
-        $_SESSION['errors'] = $message;
-        header('Location: /guru/register');
-        exit; 
+        View::redirectWith('/guru/register',$message,true);
     }
 }
 ?>
