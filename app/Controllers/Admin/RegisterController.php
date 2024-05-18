@@ -21,13 +21,19 @@ class RegisterController
     }
     public function register()
     {
+        $errors = [];
         $request = $_GET;
         if ($this->admin_login_request->check($request)) {
-
+            $admin = Admin::findBy('nama_pengguna',$request['nama_pengguna']);
+            if(isset($admin) && $admin->kata_sandi == $request['kata_sandi']){
+                $_SESSION['id_admin'] = $admin->id;
+                header('Location: /admin/dashboard');
+            }
+            $errors['invalid'] = 'Nama pengguna atau kata sandi salah.';
+            $_SESSION['errors'] = $errors;
+            header('Location: /admin/register');
         }
-        $errors = [
-            'name' => $this->admin_login_request->getMessage()
-        ];
+        $errors['name'] = $this->admin_login_request->getMessage();
         $_SESSION['errors'] = $errors;
         header('Location: /admin/register');
         exit; 
