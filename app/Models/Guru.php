@@ -75,6 +75,24 @@ class Guru extends Model implements IModel
         $db->close();
         return $admins;
     }
+    public static function findBy(string $column,string $nama_pengguna): object|null
+    {
+        $db = new Cursor();
+        $result = $db->readOne(self::$table, [$column,'=',$nama_pengguna]);
+
+        if(!isset($result)) {
+            return null;
+        }
+        
+        $admin = new Admin();
+        $admin->id = $result['id'];
+        $admin->nip = $result['nip'];
+        $admin->nama = $result['nama'];
+        $admin->jabatan = $result['jabatan'];
+        $admin->kata_sandi = $result['kata_sandi'];
+
+        return $admin;
+    }
 }
 
 ?>
