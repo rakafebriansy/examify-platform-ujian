@@ -4,7 +4,7 @@ namespace App\Core;
 
 use App\Core\Database;
 
-class Migration extends Database
+class Seeder extends Database
 {
     public function connect(): void
     {
