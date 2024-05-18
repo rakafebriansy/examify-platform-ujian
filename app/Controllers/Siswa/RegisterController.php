@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Controllers\Siswa;
+use App\Models\Siswa;
+use App\Request\SiswaRegisterRequest;
 
 class RegisterController
 {
-    private GuruRegisterRequest $guru_register_request;
+    private SiswaRegisterRequest $guru_register_request;
     public function __construct() {
-        $this->guru_register_request = new GuruRegisterRequest();
+        $this->guru_register_request = new SiswaRegisterRequest();
     }
     public function setRegister()
     {
@@ -16,11 +18,11 @@ class RegisterController
     {
         $request = $_GET;
         if ($this->guru_register_request->check($request)) {
-            $checked = Guru::findBy('nama',$request['nama']);
+            $checked = Siswa::findBy('nama',$request['nama']);
             if(!isset($checked)) {
                 $kata_sandi = password_hash($request['kata_sandi'],PASSWORD_DEFAULT);
 
-                $guru = new Guru();
+                $guru = new Siswa();
                 $guru->nip = $request['nip'];
                 $guru->nama = $request['nama'];
                 $guru->jabatan = $request['jabatan'];

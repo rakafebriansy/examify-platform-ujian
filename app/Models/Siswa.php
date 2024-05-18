@@ -57,7 +57,7 @@ class Siswa extends Model implements IModel
             return null;
         }
 
-        $mata_pelajaran = new MataPelajaran();
+        $mata_pelajaran = new Siswa();
         $mata_pelajaran->id = $result['id'];
         $mata_pelajaran->nama_pengguna = $result['nis'];
         $mata_pelajaran->nama_pengguna = $result['nama'];
@@ -78,6 +78,25 @@ class Siswa extends Model implements IModel
         $siswas = $db->readMany(self::$table);
         $db->close();
         return $siswas;
+    }
+    public static function findBy(string $column,string $nama_pengguna): object|null
+    {
+        $db = new Cursor();
+        $result = $db->readOne(self::$table, [$column,'=',$nama_pengguna]);
+
+        if(!isset($result)) {
+            return null;
+        }
+        
+        $siswa = new Siswa();
+        $siswa->id = $result['id'];
+        $siswa->nama_pengguna = $result['nis'];
+        $siswa->nama_pengguna = $result['nama'];
+        $siswa->nama_pengguna = $result['jurusan'];
+        $siswa->nama_pengguna = $result['kelas'];
+        $siswa->nama_pengguna = $result['kata_sandi'];
+
+        return $siswa;
     }
 }
 

@@ -51,7 +51,7 @@ class Jawaban extends Model implements IModel
             return null;
         }
 
-        $jawaban = new MataPelajaran();
+        $jawaban = new Jawaban();
         $jawaban->id = $result['id'];
         $jawaban->nama_pengguna = $result['jawaban'];
         $jawaban->nama_pengguna = $result['opsi'];

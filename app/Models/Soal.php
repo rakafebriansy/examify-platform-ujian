@@ -51,7 +51,7 @@ class Soal extends Model implements IModel
             return null;
         }
 
-        $soal = new MataPelajaran();
+        $soal = new Soal();
         $soal->id = $result['id'];
         $soal->nama_pengguna = $result['pertanyaan'];
         $soal->nama_pengguna = $result['kunci_jawaban'];

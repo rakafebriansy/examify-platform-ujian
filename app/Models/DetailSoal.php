@@ -47,7 +47,7 @@ class DetailSoal extends Model implements IModel
             return null;
         }
 
-        $ujian = new Ujian();
+        $ujian = new DetailSoal();
         $ujian->id = $result['id'];
         $ujian->id_ujian = $result['id_ujian'];
         $ujian->id_soal = $result['id_soal'];

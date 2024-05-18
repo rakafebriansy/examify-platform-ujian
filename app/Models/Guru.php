@@ -54,7 +54,7 @@ class Guru extends Model implements IModel
             return null;
         }
 
-        $guru = new MataPelajaran();
+        $guru = new Guru();
         $guru->id = $result['id'];
         $guru->nip = $result['nip'];
         $guru->nama = $result['nama'];
@@ -84,7 +84,7 @@ class Guru extends Model implements IModel
             return null;
         }
         
-        $admin = new Admin();
+        $admin = new Guru();
         $admin->id = $result['id'];
         $admin->nip = $result['nip'];
         $admin->nama = $result['nama'];

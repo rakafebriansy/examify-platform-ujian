@@ -50,7 +50,7 @@ class DetailUjian extends Model implements IModel
             return null;
         }
 
-        $ujian = new Ujian();
+        $ujian = new DetailUjian();
         $ujian->id = $result['id'];
         $ujian->id_ujian = $result['id_ujian'];
         $ujian->id_siswa = $result['id_siswa'];
