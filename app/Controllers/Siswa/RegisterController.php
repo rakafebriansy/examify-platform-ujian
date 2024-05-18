@@ -22,22 +22,23 @@ class RegisterController
             if(!isset($checked)) {
                 $kata_sandi = password_hash($request['kata_sandi'],PASSWORD_DEFAULT);
 
-                $guru = new Siswa();
-                $guru->nip = $request['nip'];
-                $guru->nama = $request['nama'];
-                $guru->jabatan = $request['jabatan'];
-                $guru->kata_sandi = $kata_sandi;
-                $guru->insert();
+                $siswa = new Siswa();
+                $siswa->nis = $request['nis'];
+                $siswa->nama = $request['nama'];
+                $siswa->jurusan = $request['jurusan'];
+                $siswa->kelas = $request['kelas'];
+                $siswa->kata_sandi = $kata_sandi;
+                $siswa->insert();
     
                 $message = 'Akun telah terdaftar';
                 $_SESSION['success'] = $message;
-                header('Location: /guru/login');
+                header('Location: /siswa/login');
                 exit;
             }
         }
         $message = $this->guru_register_request->getMessage();
         $_SESSION['errors'] = $message;
-        header('Location: /guru/register');
+        header('Location: /siswa/register');
         exit; 
     }
 }
