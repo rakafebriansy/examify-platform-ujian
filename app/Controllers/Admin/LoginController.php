@@ -17,20 +17,22 @@ class LoginController
     }
     public function login()
     {
-        $errors = [];
+        $message = [];
         $request = $_GET;
         if ($this->admin_login_request->check($request)) {
             $admin = Admin::findBy('nama_pengguna',$request['nama_pengguna']);
             if(isset($admin) && $admin->kata_sandi == $request['kata_sandi']){
                 $_SESSION['id_admin'] = $admin->id;
                 header('Location: /admin/dashboard');
+                exit;
             }
-            $errors['errors'] = 'Nama pengguna atau kata sandi salah.';
-            $_SESSION['errors'] = $errors;
+            $message['errors'] = 'Nama pengguna atau kata sandi salah.';
+            $_SESSION['errors'] = $message;
             header('Location: /admin/register');
+            exit;
         }
-        $errors['name'] = $this->admin_login_request->getMessage();
-        $_SESSION['errors'] = $errors;
+        $message['name'] = $this->admin_login_request->getMessage();
+        $_SESSION['errors'] = $message;
         header('Location: /admin/register');
         exit; 
     }
