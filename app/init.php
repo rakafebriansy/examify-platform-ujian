@@ -6,7 +6,7 @@ require 'app/Contracts/Model.php';
 require 'app/Core/Env.php';
 require 'app/Core/Database.php';
 require 'app/Core/Cursor.php';
-require 'app/Core/Migration.php';
+require 'app/Core/Seeder.php';
 require 'app/Core/Model.php';
 require 'app/Core/Router.php';
 require 'app/Core/View.php';
