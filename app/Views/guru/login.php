@@ -19,13 +19,9 @@ $css = '../public/css/login.css';
                 <label for="nip" class="form-label">NIP</label>
                 <input type="text" name="nip" class="form-control" id="nip">
             </div>
-            <div class="mb-2 text-box">
+            <div class="mb-4 text-box">
                 <label for="kata_sandi" class="form-label">Kata Sandi</label>
                 <input type="password" name="kata_sandi" class="form-control" id="kata_sandi">
-            </div>
-            <div class="mb-4 text-box">
-                <label for="token" class="form-label">Token</label>
-                <input type="text" name="token" class="form-control" id="token">
             </div>
             <div class="mb-2 text-box d-grid col-12">
                 <button class="btn btn-primary" type="submit">LOG IN</button>
