@@ -10,7 +10,7 @@ $css = '../public/css/login.css';
             <?php echo $_SESSION['errors'] ?>
             <script>alert($_SESSION['errors'])</script>
         <?php unset($_SESSION['errors']); endif ?>
-        <form action="/examify/admin/login" method="POST" class="col d-flex flex-column align-items-center justify-content-center">
+        <form action="/examify/guru/login" method="POST" class="col d-flex flex-column align-items-center justify-content-center">
             <div class="mb-1 text-center">
                 <h3>LOG IN</h3>
                 <p>Silahkan isi Nama Pengguna dan Kata Sandi anda untuk Login</p>
@@ -22,6 +22,10 @@ $css = '../public/css/login.css';
             <div class="mb-4 text-box">
                 <label for="kata_sandi" class="form-label">Kata Sandi</label>
                 <input type="password" name="kata_sandi" class="form-control" id="kata_sandi">
+            </div>
+            <div class="mb-4 text-box">
+                <label for="token" class="form-label">Token</label>
+                <input type="text" name="token" class="form-control" id="token">
             </div>
             <div class="mb-3 text-box d-grid col-12">
                 <button class="btn btn-primary" type="submit">LOG IN</button>

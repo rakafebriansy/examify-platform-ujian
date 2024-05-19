@@ -13,11 +13,14 @@ class LoginController
     }
     public function setLogin()
     {
-        
+        View::set('guru/login',[
+            'title' => 'Guru | Login'
+        ]);
     }
     public function login()
     {
         $request = $_POST;
+        var_dump($request);die;
         if ($this->guru_login_request->check($request)) {
             $guru = Guru::findBy('nama',$request['nama']);
             if(isset($guru) && password_verify($request['kata_sandi'],$guru->kata_sandi)){

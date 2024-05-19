@@ -14,6 +14,8 @@ Env::set(__DIR__);
 Router::add('GET', '/examify/', HomeController::class, 'index');
 Router::add('GET', '/examify/admin/login', App\Controllers\Admin\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/admin/login', App\Controllers\Admin\LoginController::class, 'login');
+Router::add('GET', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'setLogin');
+Router::add('POST', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'login');
 
 // Router::add('GET', '/users/register', UserController::class, 'register', [MustNotLoginMiddleware::class]);
 // Router::add('POST', '/users/register', UserController::class, 'postRegister', [MustNotLoginMiddleware::class]);
