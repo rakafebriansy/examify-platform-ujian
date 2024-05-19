@@ -1,6 +1,6 @@
 <?php 
 $path = __DIR__ . '/..';
-$css = '../public/css/login.css'; 
+$css = '../public/css/auth.css'; 
 ?>
 
 <?php ob_start(); ?>
@@ -26,6 +26,7 @@ $css = '../public/css/login.css';
             <div class="mb-2 text-box d-grid col-12">
                 <button class="btn btn-primary" type="submit">LOG IN</button>
             </div>
+            <p class="fs-6">Belum memiliki akun? <a href="/examify/siswa/register">Daftar disini!</a></p>
         </form>
         <div class="col-9 p-0">
             <img class="hero-auth" src="../public/images/hero-1.png" alt="">

@@ -1,6 +1,6 @@
 <?php 
 $path = __DIR__ . '/..';
-$css = '../public/css/login.css'; 
+$css = '../public/css/auth.css'; 
 ?>
 
 <?php ob_start(); ?>

@@ -13,11 +13,14 @@ class RegisterController
     }
     public function setRegister()
     {
-        
+        View::set('siswa/register',[
+            'title' => 'Siswa | Registrasi'
+        ]);
     }
     public function register()
     {
         $request = $_POST;
+        var_dump($request);die;
         if ($this->siswa_register_request->check($request)) {
             $checked = Siswa::findBy('nama',$request['nama']);
             if(!isset($checked)) {
