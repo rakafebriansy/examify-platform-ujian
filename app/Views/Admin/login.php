@@ -15,7 +15,7 @@ $css = '../public/css/login.css';
                 <h3>LOG IN</h3>
                 <p>Silahkan isi Nama Pengguna dan Kata Sandi anda untuk Login</p>
             </div>
-            <div class="mb-3 text-box">
+            <div class="mb-2 text-box">
                 <label for="nama_pengguna" class="form-label">Nama Pengguna</label>
                 <input type="text" name="nama_pengguna" class="form-control" id="nama_pengguna">
             </div>
@@ -23,7 +23,7 @@ $css = '../public/css/login.css';
                 <label for="kata_sandi" class="form-label">Kata Sandi</label>
                 <input type="password" name="kata_sandi" class="form-control" id="kata_sandi">
             </div>
-            <div class="mb-3 text-box d-grid col-12">
+            <div class="mb-2 text-box d-grid col-12">
                 <button class="btn btn-primary" type="submit">LOG IN</button>
             </div>
         </form>

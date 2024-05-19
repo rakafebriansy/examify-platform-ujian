@@ -13,13 +13,13 @@ $css = '../public/css/login.css';
         <form action="/examify/guru/login" method="POST" class="col d-flex flex-column align-items-center justify-content-center">
             <div class="mb-1 text-center">
                 <h3>LOG IN</h3>
-                <p>Silahkan isi Nama Pengguna dan Kata Sandi anda untuk Login</p>
+                <p>Silahkan isi NIP dan Kata Sandi anda untuk Login</p>
             </div>
-            <div class="mb-3 text-box">
-                <label for="nama_pengguna" class="form-label">Nama Pengguna</label>
-                <input type="text" name="nama_pengguna" class="form-control" id="nama_pengguna">
+            <div class="mb-2 text-box">
+                <label for="nip" class="form-label">NIP</label>
+                <input type="text" name="nip" class="form-control" id="nip">
             </div>
-            <div class="mb-4 text-box">
+            <div class="mb-2 text-box">
                 <label for="kata_sandi" class="form-label">Kata Sandi</label>
                 <input type="password" name="kata_sandi" class="form-control" id="kata_sandi">
             </div>
@@ -27,7 +27,7 @@ $css = '../public/css/login.css';
                 <label for="token" class="form-label">Token</label>
                 <input type="text" name="token" class="form-control" id="token">
             </div>
-            <div class="mb-3 text-box d-grid col-12">
+            <div class="mb-2 text-box d-grid col-12">
                 <button class="btn btn-primary" type="submit">LOG IN</button>
             </div>
         </form>
