@@ -21,6 +21,10 @@ class View
         header('Location: ' . $url);
         exit; 
     }
+    public static function path($path) {
+        require_once 'config/path.php';
+        return BASEURL.$path;
+    }
 }
 
 ?>
