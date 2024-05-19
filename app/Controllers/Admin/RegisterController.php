@@ -5,8 +5,7 @@ namespace App\Controllers\Admin;
 use App\Core\View;
 use App\Models\Admin;
 use App\Models\Token;
-use App\Request\AdminLoginRequest;
-use App\Request\AdminTokenRequest;
+use App\Requests\AdminTokenRequest;
 
 class RegisterController
 {

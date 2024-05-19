@@ -2,32 +2,47 @@
 
 namespace App\Core;
 
-class Router { 
-    public static $urls = [];
-    public static function add($url, $method, $callback) {
-        if ($url == '/') { $url = ''; }
-        self::$urls[strtoupper($method)][$url] = $callback;
-        self::$urls['routes'][] = $url;
-        self::$urls['routes'] = array_unique(self::$urls['routes']);
-    }
-    public static function run()
+class Router
+{
+    private static array $routes = [];
+    
+    public static function add(string $method, 
+                               string $path, 
+                               string $controller, 
+                               string $function,
+                               array  $middlewares = []): void
     {
-        $url = implode("/", 
-        array_filter(
-            explode("/", 
-                str_replace($_ENV['BASEDIR'], "", 
-                    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
-                    )
-                ), 'strlen'
-            )
-        );
+        self::$routes[] = [
+            'method' => $method,
+            'path' => $path,
+            'controller' => $controller,
+            'function' => $function,
+            'middlewares' => $middlewares
+        ];
+    }
+    public static function run(): void 
+    {
+        $path = '/examify/';
+        if (isset($_SERVER['REQUEST_URI'])) $path = $_SERVER['REQUEST_URI'];
+        $method = $_SERVER['REQUEST_METHOD'];
+        foreach (self::$routes as $route) {
+            $pattern = '#^' . $route['path'] . '$#';
+            if (preg_match($pattern, $path, $variables) && $method == $route['method']) {
 
-        if (!in_array($url, self::$urls['routes'])) {
-            header('Location: '.$_ENV['BASEURL']);
+                foreach ($route['middlewares'] as $middleware) {
+                    $instance = new $middleware;
+                    $instance->before();
+                }
+                $controller = new $route['controller'];
+                $function = $route['function'];
+                
+                array_shift($variables);
+                call_user_func_array([$controller, $function], $variables);
+                return;
+            }
         }
-
-        $call = self::$urls[$_SERVER['REQUEST_METHOD']][$url];
-        $call();
+        http_response_code(404);
+        echo 'CONTROLLER NOT FOUND';
     }
 }
 

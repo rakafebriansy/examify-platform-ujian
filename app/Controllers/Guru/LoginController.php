@@ -3,7 +3,7 @@
 namespace App\Controllers\Guru;
 use App\Core\View;
 use App\Models\Guru;
-use App\Request\GuruLoginRequest;
+use App\Requests\GuruLoginRequest;
 
 class LoginController
 {
@@ -17,7 +17,7 @@ class LoginController
     }
     public function login()
     {
-        $request = $_GET;
+        $request = $_POST;
         if ($this->guru_login_request->check($request)) {
             $guru = Guru::findBy('nama',$request['nama']);
             if(isset($guru) && password_verify($request['kata_sandi'],$guru->kata_sandi)){

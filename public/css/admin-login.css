@@ -1,0 +1,27 @@
+
+.text-box {
+    width: 80% !important;
+}
+.text-box .btn {
+    --bs-btn-width: 100%
+}
+
+main > div:nth-child(1) {
+    background-color: #052C65;
+    color: white;
+}
+main > div h3, main > div .btn {
+    font-weight: bold;
+}
+
+
+
+@media (max-width: 640px) {
+
+}
+@media (min-width: 768px) {
+    .hero-auth {
+        height: 100vh;
+        width: 75vw;
+    }
+}

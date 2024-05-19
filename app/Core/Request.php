@@ -10,15 +10,21 @@ abstract class Request
         'required' => '# tidak boleh kosong.',
     ];
 
+    protected function undefined(string $column): bool
+    {
+        $message = $this->message_bags['required'];
+        $this->error_message = str_replace('#', $column, $message);
+        return false;
+    }
     protected function required(string $column, string $value): bool
     {
         $trimmed = trim($value);
-        if(strlen($trimmed) > 0) {
+        if(strlen($trimmed) == 0) {
             $message = $this->message_bags['required'];
-            $this->error_message = str_replace('#', $column, $this->message_bags['required']);
-            return true;
+            $this->error_message = str_replace('#', $column, $message);
+            return false;
         }
-        return false;
+        return true;
     }
     public function getMessage()
     {

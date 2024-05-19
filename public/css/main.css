@@ -1,11 +1,3 @@
-#logo-label {
-    width: 6rem;
-}
-
-.dropdown-menu {
-    --bs-dropdown-min-width: 7rem;
-}
-
 nav > .container-fluid {
     padding: 0 2rem 0 2rem;
     box-sizing: border-box;
@@ -13,6 +5,13 @@ nav > .container-fluid {
 
 nav #navbarNavAltMarkup {
     justify-content: end;
+}
+#logo-label {
+    width: 6rem;
+}
+
+.dropdown-menu {
+    --bs-dropdown-min-width: 7rem;
 }
 
 @media (max-width: 640px) {

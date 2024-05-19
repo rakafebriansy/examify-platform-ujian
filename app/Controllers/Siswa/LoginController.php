@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Siswa;
 use App\Models\Siswa;
-use App\Request\SiswaLoginRequest;
+use App\Requests\SiswaLoginRequest;
 
 class LoginController
 {
@@ -17,7 +17,7 @@ class LoginController
     public function login()
     {
         $message = [];
-        $request = $_GET;
+        $request = $_POST;
         if ($this->siswa_login_request->check($request)) {
             $siswa = Siswa::findBy('nama',$request['nama']);
             if(isset($siswa) && password_verify($request['kata_sandi'],$siswa->kata_sandi)){

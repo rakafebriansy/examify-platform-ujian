@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Core\View;
 use App\Models\Admin;
-use App\Request\AdminLoginRequest;
+use App\Requests\AdminLoginRequest;
 
 class LoginController
 {
@@ -14,23 +14,24 @@ class LoginController
     }
     public function setLogin()
     {
-        
+        View::set('admin/login',[
+            'title' => 'Admin | Login'
+        ]);
     }
     public function login()
     {
-        $request = $_GET;
+        $request = $_POST;
         if ($this->admin_login_request->check($request)) {
             $admin = Admin::findBy('nama_pengguna',$request['nama_pengguna']);
             if(isset($admin) &&  password_verify($request['kata_sandi'],$admin->kata_sandi)){
                 $_SESSION['id_admin'] = $admin->id;
-                View::redirectTo('/admin/dashboard');
+                View::redirectTo('/examify/admin/dashboard');
             }
             $message = 'Nama pengguna atau kata sandi salah.';
-            View::redirectWith('/admin/register',$message,true);
+            View::redirectWith('/examify/admin/login',$message,true);
         }
         $message = $this->admin_login_request->getMessage();
-        View::redirectWith('/admin/register',$message,true);
-
+        View::redirectWith('/examify/admin/login',$message,true);
     }
 }
 

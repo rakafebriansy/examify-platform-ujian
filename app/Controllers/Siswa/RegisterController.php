@@ -3,7 +3,7 @@
 namespace App\Controllers\Siswa;
 use App\Core\View;
 use App\Models\Siswa;
-use App\Request\SiswaRegisterRequest;
+use App\Requests\SiswaRegisterRequest;
 
 class RegisterController
 {
@@ -17,7 +17,7 @@ class RegisterController
     }
     public function register()
     {
-        $request = $_GET;
+        $request = $_POST;
         if ($this->siswa_register_request->check($request)) {
             $checked = Siswa::findBy('nama',$request['nama']);
             if(!isset($checked)) {

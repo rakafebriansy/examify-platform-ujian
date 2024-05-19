@@ -3,7 +3,7 @@
 namespace App\Controllers\Guru;
 use App\Core\View;
 use App\Models\Soal;
-use App\Request\GuruBuatSoalRequest;
+use App\Requests\GuruBuatSoalRequest;
 
 class UjianController
 {
@@ -17,7 +17,7 @@ class UjianController
     }
     public function buatSoal()
     {
-        $request = $_GET;
+        $request = $_POST;
         if($this->guru_buat_soal_request->check($request)) {
             $soal = new Soal();
             $soal->pertanyaan = $request['pertanyaan'];

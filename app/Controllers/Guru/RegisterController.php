@@ -3,7 +3,7 @@
 namespace App\Controllers\Guru;
 use App\Core\View;
 use App\Models\Guru;
-use App\Request\GuruRegisterRequest;
+use App\Requests\GuruRegisterRequest;
 
 class RegisterController
 {
@@ -17,7 +17,7 @@ class RegisterController
     }
     public function register()
     {
-        $request = $_GET;
+        $request = $_POST;
         if ($this->guru_register_request->check($request)) {
             $checked = Guru::findBy('nama',$request['nama']);
             if(!isset($checked)) {

@@ -16,9 +16,8 @@
             Register
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="/siswa/register">Siswa</a></li>
-            <li><a class="dropdown-item" href="/guru/register">Guru</a></li>
-            <li><a class="dropdown-item" href="/admin/register">Admin</a></li>
+            <li><a class="dropdown-item" href="/examify/siswa/register">Siswa</a></li>
+            <li><a class="dropdown-item" href="/examify/guru/register">Guru</a></li>
           </ul>
         </div>
         <div class="dropdown-center">
@@ -26,9 +25,9 @@
             Login
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="/siswa/login">Siswa</a></li>
-            <li><a class="dropdown-item" href="/guru/login">Guru</a></li>
-            <li><a class="dropdown-item" href="/admin/login">Admin</a></li>
+            <li><a class="dropdown-item" href="/examify/siswa/login">Siswa</a></li>
+            <li><a class="dropdown-item" href="/examify/guru/login">Guru</a></li>
+            <li><a class="dropdown-item" href="/examify/admin/login">Admin</a></li>
           </ul>
         </div>
       </div>
@@ -44,24 +43,24 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="public\images\hero-1.png" class="d-block w-100" alt="...">
-        <img src="public\images\hero-1-mobile.png" class="d-block w-100" alt="...">
+        <img src="public/images/hero-1.png" class="d-block w-100" alt="...">
+        <img src="public/images/hero-1-mobile.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>First slide label</h5>
           <p>Some representative placeholder content for the first slide.</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="public\images\hero-1.png" class="d-block w-100" alt="...">
-        <img src="public\images\hero-1-mobile.png" class="d-block w-100" alt="...">
+        <img src="public/images/hero-1.png" class="d-block w-100" alt="...">
+        <img src="public/images/hero-1-mobile.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>Second slide label</h5>
           <p>Some representative placeholder content for the second slide.</p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="public\images\hero-1.png" class="d-block w-100" alt="...">
-        <img src="public\images\hero-1-mobile.png" class="d-block w-100" alt="...">
+        <img src="public/images/hero-1.png" class="d-block w-100" alt="...">
+        <img src="public/images/hero-1-mobile.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>Third slide label</h5>
           <p>Some representative placeholder content for the third slide.</p>
@@ -80,4 +79,4 @@
 </main>
 <?php $body = ob_get_clean(); ?>
 
-<?php include 'layout/main.php'; ?>
+<?php include __DIR__ . '/layout/main.php'; ?>
