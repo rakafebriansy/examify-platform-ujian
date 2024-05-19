@@ -20,19 +20,18 @@ class LoginController
     public function login()
     {
         $request = $_POST;
-        var_dump($request);die;
         if ($this->guru_login_request->check($request)) {
             $guru = Guru::findBy('nama',$request['nama']);
             if(isset($guru) && password_verify($request['kata_sandi'],$guru->kata_sandi)){
                 $_SESSION['id_guru'] = $guru->id;
-                View::redirectTo('/guru/dashboard');
+                View::redirectTo('/examify/guru/dashboard');
 
             }
             $message = 'Nama atau kata sandi salah.';
-            View::redirectWith('/guru/register',$message,true);
+            View::redirectWith('/examify/guru/login',$message,true);
         }
         $message = $this->guru_login_request->getMessage();
-        View::redirectWith('/guru/register',$message,true);
+        View::redirectWith('/examify/guru/login',$message,true);
     }
 }
 ?>

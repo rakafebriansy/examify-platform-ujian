@@ -3,11 +3,7 @@ require 'app/init.php';
 
 use App\Controllers\HomeController;
 use App\Core\Router;
-use App\Core\View;
-use App\Core\Cursor;
 use App\Core\Env;
-use App\Models\Admin;
-use App\Models\Token;
 
 Env::set(__DIR__);
 
@@ -16,6 +12,8 @@ Router::add('GET', '/examify/admin/login', App\Controllers\Admin\LoginController
 Router::add('POST', '/examify/admin/login', App\Controllers\Admin\LoginController::class, 'login');
 Router::add('GET', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'login');
+Router::add('GET', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'setLogin');
+Router::add('POST', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'login');
 
 // Router::add('GET', '/users/register', UserController::class, 'register', [MustNotLoginMiddleware::class]);
 // Router::add('POST', '/users/register', UserController::class, 'postRegister', [MustNotLoginMiddleware::class]);

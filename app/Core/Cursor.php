@@ -76,7 +76,7 @@ class Cursor extends Database
             $data = [$condition[0] => $condition[2]];
             $result = parent::executeQuery($sql,$data);
             $this->close();
-            return $result;
+            return $result?? null;
         } catch (\PDOException $e) {
             throw $e;
         }
@@ -90,7 +90,7 @@ class Cursor extends Database
             $sql = "SELECT ". $columns ." FROM $table WHERE $condition_str;";
             $result = parent::executeQuery($sql,fetch_all:true);
             $this->close();
-            return $result;
+            return $result?? null;
         } catch (\PDOException $e) {
             throw $e;
         }

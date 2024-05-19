@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers\Siswa;
+use App\Core\View;
 use App\Models\Siswa;
 use App\Requests\SiswaLoginRequest;
 
@@ -12,28 +13,24 @@ class LoginController
     }
     public function setLogin()
     {
-        
+        View::set('siswa/login',[
+            'title' => 'Siswa | Login'
+        ]);
     }
     public function login()
     {
-        $message = [];
         $request = $_POST;
         if ($this->siswa_login_request->check($request)) {
-            $siswa = Siswa::findBy('nama',$request['nama']);
+            $siswa = Siswa::findBy('nis',$request['nis']);
             if(isset($siswa) && password_verify($request['kata_sandi'],$siswa->kata_sandi)){
                 $_SESSION['id_siswa'] = $siswa->id;
-                header('Location: /siswa/dashboard');
-                exit;
+                View::redirectTo('/examify/siswa/login');
             }
             $message = 'Nama atau kata sandi salah.';
-            $_SESSION['errors'] = $message;
-            header('Location: /siswa/register');
-            exit;
+            View::redirectWith('/examify/siswa/login',$message,true);
         }
         $message = $this->siswa_login_request->getMessage();
-        $_SESSION['errors'] = $message;
-        header('Location: /siswa/register');
-        exit; 
+        View::redirectWith('/examify/siswa/login',$message,true);
     }
 }
 

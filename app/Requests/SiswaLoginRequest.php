@@ -9,8 +9,8 @@ class SiswaLoginRequest extends Request
     public function check(array $request): bool
     {
         try {
-            $this->result = $this->required('NIS', $request['NIS']);
-            $this->result = $this->required('Nama', $request['nama']);
+            $this->result = $this->required('NIS', $request['nis']);
+            $this->result = $this->required('Kata sandi', $request['kata_sandi']);
             return $this->result;
         } catch (\TypeError $e) {
             return false;

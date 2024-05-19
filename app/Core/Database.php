@@ -19,7 +19,7 @@ class Database
     {
         $this->connection = null;
     }
-    public function executeQuery(string $sql, array|null $data = null, bool $fetch_all = false)
+    public function executeQuery(string $sql, array|null $data = null, bool $fetch_all = false): array|bool
     {
         $statement = $this->connection->prepare($sql);
         $statement->execute($data);
