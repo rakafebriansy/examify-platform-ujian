@@ -11,7 +11,6 @@ class GuruRegisterRequest extends Request
         try {
             $this->result = $this->required('NIP', $request['nip']);
             $this->result = $this->required('Nama', $request['nama']);
-            $this->result = $this->required('Jabatan', $request['jabatan']);
             $this->result = $this->required('Kata sandi', $request['kata_sandi']);
             return $this->result;
         } catch (\TypeError $e) {

@@ -13,7 +13,9 @@ class RegisterController
     }
     public function setRegister()
     {
-        
+        View::set('guru/register',[
+            'title' => 'Guru | Registrasi'
+        ]);
     }
     public function register()
     {
@@ -31,16 +33,16 @@ class RegisterController
 
                 if($guru->insert()) {
                     $message = 'Akun berhasil didaftarkan';
-                    View::redirectWith('/guru/login',$message);
+                    View::redirectWith('/examify/guru/login',$message);
                 }
                 $message = 'Akun gagal dibuat';
-                View::redirectWith('/guru/register',$message, true);
+                View::redirectWith('/examify/guru/register',$message, true);
             }
             $message = 'Akun dengan nama tersebut telah terdaftar';
-            View::redirectWith('/guru/register',$message, true);
+            View::redirectWith('/examify/guru/register',$message, true);
         }
         $message = $this->guru_register_request->getMessage();
-        View::redirectWith('/guru/register',$message, true);
+        View::redirectWith('/examify/guru/register',$message, true);
     }
 }
 

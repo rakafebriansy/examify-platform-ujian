@@ -12,6 +12,8 @@ Router::add('GET', '/examify/admin/login', App\Controllers\Admin\LoginController
 Router::add('POST', '/examify/admin/login', App\Controllers\Admin\LoginController::class, 'login');
 Router::add('GET', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'login');
+Router::add('GET', '/examify/guru/register', App\Controllers\Guru\RegisterController::class, 'setRegister');
+Router::add('POST', '/examify/guru/register', App\Controllers\Guru\RegisterController::class, 'register');
 Router::add('GET', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'login');
 Router::add('GET', '/examify/siswa/register', App\Controllers\Siswa\RegisterController::class, 'setRegister');

@@ -1,7 +1,7 @@
 <?php 
 $path = __DIR__ . '/..';
 $css = '../public/css/auth.css'; 
-$js = '../public/js/admin-register.js'; 
+$js = '../public/js/register.js'; 
 ?>
 
 <?php ob_start(); ?>
@@ -21,12 +21,12 @@ $js = '../public/js/admin-register.js';
                 <input type="text" name="nis" class="form-control" id="nis">
             </div>
             <div class="mb-2 text-box">
-                <label for="kata_sandi" class="form-label">Kata Sandi</label>
-                <input type="password" name="kata_sandi" class="form-control" id="kata_sandi">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" name="nama" class="form-control" id="nama">
             </div>
             <div class="mb-4 text-box">
-                <label for="token" class="form-label">Token</label>
-                <input type="text" name="token" class="form-control" id="token">
+                <label for="kata_sandi" class="form-label">Kata Sandi</label>
+                <input type="password" name="kata_sandi" class="form-control" id="kata_sandi">
             </div>
             <div class="mb-4 text-box d-flex justify-content-between">
                 <div id="dropdowns" class="btn-group" role="group" aria-label="Button group with nested dropdown">
