@@ -42,7 +42,7 @@ $css = '../public/css/mata-pelajaran.css';
           </thead>
           <tbody>
             <?php 
-              if(isset($data['mata_pelajarans'])):
+              if(isset($data['mata_pelajarans']) && count($data['mata_pelajarans']) > 0):
                 $count = 1
             ?>
               <?php foreach ($data['mata_pelajarans'] as $mata_pelajaran): ?>
@@ -62,7 +62,7 @@ $css = '../public/css/mata-pelajaran.css';
               ?>
             <?php else: ?>
             <tr>
-              <td colspan="4" class="text-center">Belum ada data</td>
+              <td colspan="4" class="text-center">Belum ada data.</td>
             </tr>
             <?php endif; ?>
           </tbody>
