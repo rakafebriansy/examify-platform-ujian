@@ -11,9 +11,9 @@ class Ujian extends Model implements IModel
     public ?int $id;
     public string $nama;
     public string $tanggal_ujian;
-    public string $jenis;
+    public string $token;
     public int $id_mata_pelajaran;
-    public int $id_admin;
+    public int $id_guru;
     
     public function __construct() {
         parent::__construct();
@@ -23,9 +23,9 @@ class Ujian extends Model implements IModel
         $data = [
             'nama' => $this->nama,
             'tanggal_ujian' => $this->tanggal_ujian,
-            'jenis' => $this->jenis,
+            'token' => $this->token,
             'id_mata_pelajaran' => $this->id_mata_pelajaran,
-            'id_admin' => $this->id_admin
+            'id_guru' => $this->id_guru
         ];
         $result = $this->db->create(self::$table,$data);
         return $result;
@@ -35,9 +35,9 @@ class Ujian extends Model implements IModel
         $data = [
             'nama' => $this->nama,
             'tanggal_ujian' => $this->tanggal_ujian,
-            'jenis' => $this->jenis,
+            'token' => $this->token,
             'id_mata_pelajaran' => $this->id_mata_pelajaran,
-            'id_admin' => $this->id_admin
+            'id_guru' => $this->id_guru
         ];
         $result = $this->db->update(self::$table, $data, $this->id);
         return $result;
@@ -47,36 +47,48 @@ class Ujian extends Model implements IModel
         $result = $this->db->delete(self::$table,$this->id);
         return $result;
     }
-    public static function find(int $id): object|null
+    public static function find(int $id): object|false
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, ['id','=',$id]);
 
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $ujian = new Ujian();
+            $ujian->id = $result['id'];
+            $ujian->nama = $result['nama'];
+            $ujian->tanggal_ujian = $result['tanggal_ujian'];
+            $ujian->token = $result['token'];
+            $ujian->id_mata_pelajaran = $result['id_mata_pelajaran'];
+            $ujian->id_guru = $result['id_guru'];
+    
+            return $ujian;
         }
-
-        $ujian = new Ujian();
-        $ujian->id = $result['id'];
-        $ujian->nama = $result['nama'];
-        $ujian->tanggal_ujian = $result['tanggal_ujian'];
-        $ujian->jenis = $result['jenis'];
-        $ujian->id_mata_pelajaran = $result['id_mata_pelajaran'];
-        $ujian->id_admin = $result['id_admin'];
-
-        return $ujian;
+        
+        return false;
     }    
     public static function all(): array|null
     {
         $db = new Cursor();
-
+        $result = $db->readMany(self::$table);
+        
         if(!isset($result)) {
             return null;
         }
 
-        $tokens = $db->readMany(self::$table);
+        $ujians = [];
+        foreach($result as $row) {
+            $ujian = new Ujian();
+            $ujian->id = $result['id'];
+            $ujian->nama = $result['nama'];
+            $ujian->tanggal_ujian = $result['tanggal_ujian'];
+            $ujian->token = $result['token'];
+            $ujian->id_mata_pelajaran = $result['id_mata_pelajaran'];
+            $ujian->id_guru = $result['id_guru'];
+            $ujians[] = $ujian;
+        }
+        
         $db->close();
-        return $tokens;
+        return $ujians;
     }
 }
 

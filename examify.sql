@@ -132,7 +132,7 @@ CREATE TABLE `ujian` (
   `id` int NOT NULL,
   `nama` varchar(60) NOT NULL,
   `tanggal_ujian` date NOT NULL,
-  `jenis` enum('ujian-bab','ujian-tengah-semester','ujian-akhir-semester','remedial') NOT NULL,
+  `token` varchar(255) NOT NULL,
   `id_mata_pelajaran` int NOT NULL,
   `id_guru` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

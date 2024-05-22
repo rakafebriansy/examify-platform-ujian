@@ -21,13 +21,13 @@ class LoginController
     {
         $request = $_POST;
         if ($this->guru_login_request->check($request)) {
-            $guru = Guru::findBy('nama',$request['nama']);
-            if(isset($guru) && password_verify($request['kata_sandi'],$guru->kata_sandi)){
+            $guru = Guru::findBy('nip',$request['nip']);
+            if($guru && password_verify($request['kata_sandi'],$guru->kata_sandi)){
                 $_SESSION['id_guru'] = $guru->id;
-                View::redirectTo('/examify/guru/dashboard');
+                View::redirectTo('/examify/guru/ujian');
 
             }
-            $message = 'Nama atau kata sandi salah.';
+            $message = 'NIP atau kata sandi salah.';
             View::redirectWith('/examify/guru/login',$message,true);
         }
         $message = $this->guru_login_request->getMessage();

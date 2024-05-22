@@ -22,7 +22,7 @@ class RegisterController
         $request = $_POST;
         if ($this->guru_register_request->check($request)) {
             $checked = Guru::findBy('nama',$request['nama']);
-            if(!isset($checked)) {
+            if($checked == false) {
                 $kata_sandi = password_hash($request['kata_sandi'],PASSWORD_DEFAULT);
 
                 $guru = new Guru();

@@ -42,22 +42,22 @@ class Jawaban extends Model implements IModel
         $result = $this->db->delete(self::$table,$this->id);
         return $result;
     }
-    public static function find(int $id): object|null
+    public static function find(int $id): object|bool
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, ['id','=',$id]);
 
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $jawaban = new Jawaban();
+            $jawaban->id = $result['id'];
+            $jawaban->nama_pengguna = $result['jawaban'];
+            $jawaban->nama_pengguna = $result['opsi'];
+            $jawaban->nama_pengguna = $result['id_soal'];
+    
+            return $jawaban;
         }
-
-        $jawaban = new Jawaban();
-        $jawaban->id = $result['id'];
-        $jawaban->nama_pengguna = $result['jawaban'];
-        $jawaban->nama_pengguna = $result['opsi'];
-        $jawaban->nama_pengguna = $result['id_soal'];
-
-        return $jawaban;
+        
+        return false;
     }    
     public static function all(): array|null
     {

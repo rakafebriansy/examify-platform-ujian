@@ -1,0 +1,44 @@
+#logo-label {
+    width: 6rem;
+}
+
+main .container {
+    border-radius: 4rem;
+    margin-top: 5rem;
+}
+main .container h3 {
+    text-align: center;
+}
+main .table-container {
+    width: 90%;
+}
+main .table-container div:first-child {
+    width: 100%;
+}
+
+footer {
+    color: white;
+    background-color: #052C65;
+}
+footer h4 a {
+    color: white;
+}
+footer p {
+    display: inline-block;
+}
+footer svg {
+    width: 1.4rem;
+}
+
+nav > .container-fluid {
+    padding: 0 2rem 0 2rem;
+    box-sizing: border-box;
+}
+
+nav #navbarNavAltMarkup {
+    justify-content: end;
+}
+
+nav .navbar-nav {
+    cursor: pointer;
+}

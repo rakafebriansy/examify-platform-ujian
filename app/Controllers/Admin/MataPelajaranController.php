@@ -20,12 +20,13 @@ class MataPelajaranController
             'mata_pelajarans' => $mata_pelajarans
         ]);
     }
-    public function addMataPelajaran()
+    public function buatMataPelajaran()
     {
         $request = $_POST;
         if ($this->admin_mata_pelajaran_request->check($request)) {
             $mata_pelajaran = new MataPelajaran();
             $mata_pelajaran->nama = $_POST['nama'];
+            $mata_pelajaran->id_admin = $_SESSION['id_admin'];
             if($mata_pelajaran->insert()){
                 $message = 'Mata pelajaran berhasil ditambahkan.';
                 View::redirectWith('/examify/admin/mata-pelajaran',$message);
@@ -36,7 +37,7 @@ class MataPelajaranController
         $message = $this->admin_mata_pelajaran_request->getMessage();
         View::redirectWith('/examify/admin/mata-pelajaran',$message,true);
     }
-    public function deleteMataPelajaran()
+    public function hapusMataPelajaran()
     {
         $request = $_POST;
         if (isset($request['id'])) {

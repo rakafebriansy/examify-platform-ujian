@@ -40,21 +40,19 @@ class Admin extends Model implements IModel
         return $result;
 
     }
-    public static function find(int $id): object|null
+    public static function find(int $id): object|bool
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, ['id','=',$id]);
 
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $admin = new Admin();
+            $admin->id = $result['id'];
+            $admin->nama_pengguna = $result['nama_pengguna'];
+            $admin->kata_sandi = $result['kata_sandi'];
+            return $admin;
         }
-        
-        $admin = new Admin();
-        $admin->id = $result['id'];
-        $admin->nama_pengguna = $result['nama_pengguna'];
-        $admin->kata_sandi = $result['kata_sandi'];
-
-        return $admin;
+        return false;
     }    
     public static function all(): array|null
     {
@@ -68,21 +66,21 @@ class Admin extends Model implements IModel
         $db->close();
         return $admins;
     }
-    public static function findBy(string $column,string $nama_pengguna): object|null
+    public static function findBy(string $column,string $nama_pengguna): object|bool
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, [$column,'=',$nama_pengguna]);
 
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $admin = new Admin();
+            $admin->id = $result['id'];
+            $admin->nama_pengguna = $result['nama_pengguna'];
+            $admin->kata_sandi = $result['kata_sandi'];
+            
+            return $admin;
         }
         
-        $admin = new Admin();
-        $admin->id = $result['id'];
-        $admin->nama_pengguna = $result['nama_pengguna'];
-        $admin->kata_sandi = $result['kata_sandi'];
-
-        return $admin;
+        return false;
     }
 }
 

@@ -23,9 +23,9 @@ class LoginController
         $request = $_POST;
         if ($this->admin_login_request->check($request)) {
             $admin = Admin::findBy('nama_pengguna',$request['nama_pengguna']);
-            if(isset($admin) &&  password_verify($request['kata_sandi'],$admin->kata_sandi)){
+            if(isset($admin) && $request['kata_sandi'] == $admin->kata_sandi){
                 $_SESSION['id_admin'] = $admin->id;
-                View::redirectTo('/examify/admin/dashboard');
+                View::redirectTo('/examify/admin/mata-pelajaran');
             }
             $message = 'Nama pengguna atau kata sandi salah.';
             View::redirectWith('/examify/admin/login',$message,true);

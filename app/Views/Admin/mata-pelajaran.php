@@ -36,7 +36,7 @@ $css = '../public/css/mata-pelajaran.css';
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Nama Mata Kuliah</th>
+              <th scope="col">Nama Mata Pelajaran</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>

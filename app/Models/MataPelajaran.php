@@ -11,6 +11,7 @@ class MataPelajaran extends Model implements IModel
     private static string $table = 'mata_pelajaran';
     public ?int $id;
     public string $nama;
+    public int $id_admin;
     
     public function __construct() {
         parent::__construct();
@@ -19,6 +20,7 @@ class MataPelajaran extends Model implements IModel
     {
         $data = [
             'nama' => $this->nama,
+            'id_admin' => $this->id_admin,
         ];
         $result = $this->db->create(self::$table,$data);
         return $result;
@@ -27,6 +29,7 @@ class MataPelajaran extends Model implements IModel
     {
         $data = [
             'nama' => $this->nama,
+            'id_admin' => $this->id_admin,
         ];
         $result = $this->db->update(self::$table, $data, $this->id);
         return $result;
@@ -36,20 +39,21 @@ class MataPelajaran extends Model implements IModel
         $result = $this->db->delete(self::$table,$this->id);
         return $result;
     }
-    public static function find(int $id): object|null
+    public static function find(int $id): object|bool
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, ['id','=',$id]);
 
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $mata_pelajaran = new MataPelajaran();
+            $mata_pelajaran->id = $result['id'];
+            $mata_pelajaran->nama = $result['nama'];
+            $mata_pelajaran->id_admin = $result['id_admin'];
+    
+            return $mata_pelajaran;
         }
-
-        $mata_pelajaran = new MataPelajaran();
-        $mata_pelajaran->id = $result['id'];
-        $mata_pelajaran->nama_pengguna = $result['nama'];
-
-        return $mata_pelajaran;
+        
+        return false;
     }    
     public static function all(): array|null
     {
@@ -65,6 +69,7 @@ class MataPelajaran extends Model implements IModel
             $mata_pelajaran = new MataPelajaran();
             $mata_pelajaran->id = $row['id'];
             $mata_pelajaran->nama = $row['nama'];
+            $mata_pelajaran->id_admin = $row['id_admin'];
             $mata_pelajarans[] = $mata_pelajaran;
         }
         

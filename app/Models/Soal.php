@@ -42,22 +42,22 @@ class Soal extends Model implements IModel
         $this->db->delete(self::$table,$this->id);
         return true;
     }
-    public static function find(int $id): object|null
+    public static function find(int $id): object|bool
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, ['id','=',$id]);
         
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $soal = new Soal();
+            $soal->id = $result['id'];
+            $soal->nama_pengguna = $result['pertanyaan'];
+            $soal->nama_pengguna = $result['kunci_jawaban'];
+            $soal->nama_pengguna = $result['id_guru'];
+    
+            return $soal;
         }
-
-        $soal = new Soal();
-        $soal->id = $result['id'];
-        $soal->nama_pengguna = $result['pertanyaan'];
-        $soal->nama_pengguna = $result['kunci_jawaban'];
-        $soal->nama_pengguna = $result['id_guru'];
-
-        return $soal;
+        
+        return false;
     }    
     public static function all(): array|null
     {

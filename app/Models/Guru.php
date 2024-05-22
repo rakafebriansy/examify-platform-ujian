@@ -12,7 +12,6 @@ class Guru extends Model implements IModel
     public ?int $id;
     public string $nip;
     public string $nama;
-    public string $jabatan;
     public string $kata_sandi;
     
     public function __construct() {
@@ -23,7 +22,6 @@ class Guru extends Model implements IModel
         $data = [
             'nip' => $this->nip,
             'nama' => $this->nama,
-            'jabatan' => $this->jabatan,
             'kata_sandi' => $this->kata_sandi,
         ];
         $result = $this->db->create(self::$table,$data);
@@ -34,7 +32,6 @@ class Guru extends Model implements IModel
         $data = [
             'nip' => $this->nip,
             'nama' => $this->nama,
-            'jabatan' => $this->jabatan,
             'kata_sandi' => $this->kata_sandi,
         ];
         $result = $this->db->update(self::$table, $data, $this->id);
@@ -45,23 +42,21 @@ class Guru extends Model implements IModel
         $this->db->delete(self::$table,$this->id);
         return true;
     }
-    public static function find(int $id): object|null
+    public static function find(int $id): object|bool
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, ['id','=',$id]);
         
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $guru = new Guru();
+            $guru->id = $result['id'];
+            $guru->nip = $result['nip'];
+            $guru->nama = $result['nama'];
+            $guru->kata_sandi = $result['kata_sandi'];
+    
+            return $guru;
         }
-
-        $guru = new Guru();
-        $guru->id = $result['id'];
-        $guru->nip = $result['nip'];
-        $guru->nama = $result['nama'];
-        $guru->jabatan = $result['jabatan'];
-        $guru->kata_sandi = $result['kata_sandi'];
-
-        return $guru;
+        return false;
     }    
     public static function all(): array|null
     {
@@ -71,27 +66,26 @@ class Guru extends Model implements IModel
             return null;
         }
 
-        $admins = $db->readMany(self::$table);
+        $gurus = $db->readMany(self::$table);
         $db->close();
-        return $admins;
+        return $gurus;
     }
-    public static function findBy(string $column,string $nama_pengguna): object|null
+    public static function findBy(string $column,string $nama_pengguna): object|bool
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, [$column,'=',$nama_pengguna]);
 
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $guru = new Guru();
+            $guru->id = $result['id'];
+            $guru->nip = $result['nip'];
+            $guru->nama = $result['nama'];
+            $guru->kata_sandi = $result['kata_sandi'];
+            return $guru;
         }
         
-        $admin = new Guru();
-        $admin->id = $result['id'];
-        $admin->nip = $result['nip'];
-        $admin->nama = $result['nama'];
-        $admin->jabatan = $result['jabatan'];
-        $admin->kata_sandi = $result['kata_sandi'];
 
-        return $admin;
+        return false;
     }
 }
 

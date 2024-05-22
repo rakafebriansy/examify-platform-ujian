@@ -19,8 +19,10 @@ class Database
     {
         $this->connection = null;
     }
-    public function executeQuery(string $sql, array|null $data = null, bool $fetch_all = false): array|bool
+    public function executeQuery(string $sql, array $data = [], bool $fetch_all = false): array|bool
     {
+        $this->connect();
+        $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $statement = $this->connection->prepare($sql);
         $statement->execute($data);
         if($fetch_all) {
@@ -28,13 +30,30 @@ class Database
         } else {
             $result = $statement->fetch(\PDO::FETCH_ASSOC);
         }
+        $this->close();
         return $result;
     }
-    public function executeNonQuery(string $sql, array $data): bool
+    public function executeNonQuery(string $sql, array $data = []): bool
     {
+        $this->connect();
+        $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $statement = $this->connection->prepare($sql);
         $statement->execute($data);
         $result = $statement->rowCount();
+        $this->close();
+        return $result;
+    }
+    public function executeNoBind(string $sql, bool $fetch_all = false): array|bool
+    {
+        $this->connect();
+        $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $statement = $this->connection->query($sql);
+        if($fetch_all) {
+            $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        } else {
+            $result = $statement->fetch(\PDO::FETCH_ASSOC);
+        }
+        $this->close();
         return $result;
     }
 

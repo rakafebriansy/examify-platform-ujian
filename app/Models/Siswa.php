@@ -48,24 +48,24 @@ class Siswa extends Model implements IModel
         $this->db->delete(self::$table,$this->id);
         return true;
     }
-    public static function find(int $id): object|null
+    public static function find(int $id): object|false
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, ['id','=',$id]);
         
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $mata_pelajaran = new Siswa();
+            $mata_pelajaran->id = $result['id'];
+            $mata_pelajaran->nama_pengguna = $result['nis'];
+            $mata_pelajaran->nama_pengguna = $result['nama'];
+            $mata_pelajaran->nama_pengguna = $result['jurusan'];
+            $mata_pelajaran->nama_pengguna = $result['kelas'];
+            $mata_pelajaran->nama_pengguna = $result['kata_sandi'];
+    
+            return $mata_pelajaran;
         }
-
-        $mata_pelajaran = new Siswa();
-        $mata_pelajaran->id = $result['id'];
-        $mata_pelajaran->nama_pengguna = $result['nis'];
-        $mata_pelajaran->nama_pengguna = $result['nama'];
-        $mata_pelajaran->nama_pengguna = $result['jurusan'];
-        $mata_pelajaran->nama_pengguna = $result['kelas'];
-        $mata_pelajaran->nama_pengguna = $result['kata_sandi'];
-
-        return $mata_pelajaran;
+        
+        return false;
     }    
     public static function all(): array|null
     {
