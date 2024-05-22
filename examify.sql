@@ -43,13 +43,15 @@ INSERT INTO `admin` (`id`, `nama_pengguna`, `kata_sandi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_soal`
+-- Table structure for table `lembar_soal`
 --
 
-CREATE TABLE `detail_soal` (
+CREATE TABLE `lembar_soal` (
   `id` int NOT NULL,
-  `id_ujian` int NOT NULL,
-  `id_soal` int NOT NULL
+  `nama` int NOT NULL,
+  `id_soal` int NOT NULL,
+  `id_guru` int NOT NULL,
+  `id_mata_pelajaran` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -141,27 +143,6 @@ CREATE TABLE `soal` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `token`
---
-
-CREATE TABLE `token` (
-  `id` int NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `id_admin` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `token`
---
-
-INSERT INTO `token` (`id`, `token`, `id_admin`) VALUES
-(2, '6646fd38c4b97', 1),
-(3, '6646fd42b6457', 1),
-(4, '664703f5ea836', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `ujian`
 --
 
@@ -170,8 +151,9 @@ CREATE TABLE `ujian` (
   `nama` varchar(60) NOT NULL,
   `tanggal_ujian` date NOT NULL,
   `jenis` enum('ujian-bab','ujian-tengah-semester','ujian-akhir-semester','remedial') NOT NULL,
-  `id_mata_pelajaran` int NOT NULL,
-  `id_guru` int NOT NULL
+  `token` varchar(255) NOT NULL,
+  `id_ujian` int NOT NULL,
+  `id_admin` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -185,12 +167,13 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `detail_soal`
+-- Indexes for table `lembar_soal`
 --
-ALTER TABLE `detail_soal`
+ALTER TABLE `lembar_soal`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_soal` (`id_soal`),
-  ADD KEY `id_ujian` (`id_ujian`);
+  ADD KEY `id_guru` (`id_guru`),
+  ADD KEY `id_mata_pelajaran` (`id_mata_pelajaran`);
 
 --
 -- Indexes for table `detail_ujian`
@@ -233,19 +216,12 @@ ALTER TABLE `soal`
   ADD KEY `id_guru` (`id_guru`);
 
 --
--- Indexes for table `token`
---
-ALTER TABLE `token`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_token_admin` (`id_admin`);
-
---
 -- Indexes for table `ujian`
 --
 ALTER TABLE `ujian`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_guru` (`id_guru`),
-  ADD KEY `id_mata_pelajaran` (`id_mata_pelajaran`);
+  ADD KEY `id_ujian` (`id_ujian`),
+  ADD KEY `id_admin` (`id_admin`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -258,9 +234,9 @@ ALTER TABLE `admin`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `detail_soal`
+-- AUTO_INCREMENT for table `lembar_soal`
 --
-ALTER TABLE `detail_soal`
+ALTER TABLE `lembar_soal`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
@@ -300,12 +276,6 @@ ALTER TABLE `soal`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `token`
---
-ALTER TABLE `token`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `ujian`
 --
 ALTER TABLE `ujian`
@@ -316,11 +286,12 @@ ALTER TABLE `ujian`
 --
 
 --
--- Constraints for table `detail_soal`
+-- Constraints for table `lembar_soal`
 --
-ALTER TABLE `detail_soal`
-  ADD CONSTRAINT `detail_soal_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `soal` (`id`),
-  ADD CONSTRAINT `detail_soal_ibfk_2` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id`);
+ALTER TABLE `lembar_soal`
+  ADD CONSTRAINT `lembar_soal_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `soal` (`id`),
+  ADD CONSTRAINT `lembar_soal_ibfk_2` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id`),
+  ADD CONSTRAINT `lembar_soal_ibfk_3` FOREIGN KEY (`id_mata_pelajaran`) REFERENCES `mata_pelajaran` (`id`);
 
 --
 -- Constraints for table `detail_ujian`
@@ -342,17 +313,11 @@ ALTER TABLE `soal`
   ADD CONSTRAINT `soal_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id`);
 
 --
--- Constraints for table `token`
---
-ALTER TABLE `token`
-  ADD CONSTRAINT `fk_token_admin` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
-
---
 -- Constraints for table `ujian`
 --
 ALTER TABLE `ujian`
-  ADD CONSTRAINT `ujian_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id`),
-  ADD CONSTRAINT `ujian_ibfk_2` FOREIGN KEY (`id_mata_pelajaran`) REFERENCES `mata_pelajaran` (`id`);
+  ADD CONSTRAINT `ujian_ibfk_1` FOREIGN KEY (`id_ujian`) REFERENCES `ujian` (`id`),
+  ADD CONSTRAINT `ujian_ibfk_2` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
