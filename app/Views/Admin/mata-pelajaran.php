@@ -37,6 +37,7 @@ $css = '../public/css/mata-pelajaran.css';
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nama Mata Kuliah</th>
+              <th scope="col">Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +49,12 @@ $css = '../public/css/mata-pelajaran.css';
                 <tr>
                   <th scope="row"><?= $count;?></th>
                   <td><?= $mata_pelajaran->nama;?></td>
+                  <td>
+                    <form action="/examify/admin/mata-pelajaran/hapus" method="post">
+                      <input type="hidden" name="id" id="" value="<?= $mata_pelajaran->id ?>">
+                      <button class="badge text-bg-danger border border-0">Hapus</button>
+                    </form>
+                  </td>
                 </tr>
               <?php 
                 $count++;

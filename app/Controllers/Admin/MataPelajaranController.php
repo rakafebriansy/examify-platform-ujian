@@ -36,6 +36,21 @@ class MataPelajaranController
         $message = $this->admin_mata_pelajaran_request->getMessage();
         View::redirectWith('/examify/admin/mata-pelajaran',$message,true);
     }
+    public function deleteMataPelajaran()
+    {
+        $request = $_POST;
+        if (isset($request['id'])) {
+            $mata_pelajaran = MataPelajaran::find($request['id']);
+            if($mata_pelajaran->delete()){
+                $message = 'Mata pelajaran berhasil dihapus.';
+                View::redirectWith('/examify/admin/mata-pelajaran',$message);
+            }
+            $message = 'Mata pelajaran gagal dihapus.';
+            View::redirectWith('/examify/admin/mata-pelajaran',$message,true);
+        }
+        $message = $this->admin_mata_pelajaran_request->getMessage();
+        View::redirectWith('/examify/admin/mata-pelajaran',$message,true);
+    }
 }
 
 ?>

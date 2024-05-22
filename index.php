@@ -12,6 +12,7 @@ Router::add('GET', '/examify/admin/login', App\Controllers\Admin\LoginController
 Router::add('POST', '/examify/admin/login', App\Controllers\Admin\LoginController::class, 'login');
 Router::add('GET', '/examify/admin/mata-pelajaran', App\Controllers\Admin\MataPelajaranController::class, 'setMataPelajaran');
 Router::add('POST', '/examify/admin/mata-pelajaran', App\Controllers\Admin\MataPelajaranController::class, 'addMataPelajaran');
+Router::add('POST', '/examify/admin/mata-pelajaran/hapus', App\Controllers\Admin\MataPelajaranController::class, 'deleteMataPelajaran');
 Router::add('GET', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'login');
 Router::add('GET', '/examify/guru/register', App\Controllers\Guru\RegisterController::class, 'setRegister');
