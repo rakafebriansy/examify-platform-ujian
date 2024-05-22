@@ -56,9 +56,9 @@ $js = '../public/js/ujian.js';
                   <td><?= $ujian['mata_pelajaran'];?></td>
                   <td><?= $ujian['token'];?></td>
                   <td>
-                    <form action="/examify/admin/mata-pelajaran/hapus" method="post">
+                    <form action="/examify/guru/ujian/hapus" method="post">
                       <input type="hidden" name="id" id="" value="<?= $ujian['id'] ?>">
-                      <button class="badge text-bg-danger border border-0">Hapus</button>
+                      <button type="submit" class="badge text-bg-danger border border-0">Hapus</button>
                     </form>
                   </td>
                 </tr>

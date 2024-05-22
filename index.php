@@ -19,6 +19,7 @@ Router::add('GET', '/examify/guru/register', App\Controllers\Guru\RegisterContro
 Router::add('POST', '/examify/guru/register', App\Controllers\Guru\RegisterController::class, 'register');
 Router::add('GET', '/examify/guru/ujian', App\Controllers\Guru\UjianController::class, 'setUjian');
 Router::add('POST', '/examify/guru/ujian', App\Controllers\Guru\UjianController::class, 'buatUjian');
+Router::add('POST', '/examify/guru/ujian/hapus', App\Controllers\Guru\UjianController::class, 'hapusUjian');
 Router::add('GET', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'login');
 Router::add('GET', '/examify/siswa/register', App\Controllers\Siswa\RegisterController::class, 'setRegister');

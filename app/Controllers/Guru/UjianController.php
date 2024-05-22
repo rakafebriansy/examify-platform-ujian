@@ -50,6 +50,19 @@ class UjianController
         View::redirectWith('/examify/guru/ujian',$message,true);
     }
 
+    public function hapusUjian()
+    {
+        $request = $_POST;
+        if (isset($request['id'])) {
+            $mata_pelajaran = Ujian::find($request['id']);
+            if($mata_pelajaran->delete()){
+                $message = 'Ujian berhasil dihapus.';
+                View::redirectWith('/examify/guru/ujian',$message);
+            }
+        }
+        $message = 'Ujian gagal dihapus.';
+        View::redirectWith('/examify/guru/ujian',$message,true);
+    }
 
     // public function addSoal()
     // {
