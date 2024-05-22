@@ -54,12 +54,20 @@ class MataPelajaran extends Model implements IModel
     public static function all(): array|null
     {
         $db = new Cursor();
-
+        $result = $db->readMany(self::$table);
+        
         if(!isset($result)) {
             return null;
         }
+
+        $mata_pelajarans = [];
+        foreach($result as $row) {
+            $mata_pelajaran = new MataPelajaran();
+            $mata_pelajaran->id = $row['id'];
+            $mata_pelajaran->nama = $row['nama'];
+            $mata_pelajarans[] = $mata_pelajaran;
+        }
         
-        $mata_pelajarans = $db->readMany(self::$table);
         $db->close();
         return $mata_pelajarans;
     }

@@ -9,6 +9,11 @@ class HomeController
     {
         View::set('index');
     }
+    public function logout()
+    {
+        session_destroy();
+        View::redirectTo('/examify/');
+    }
 }
 
 ?>

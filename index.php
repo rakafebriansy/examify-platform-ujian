@@ -10,6 +10,8 @@ Env::set(__DIR__);
 Router::add('GET', '/examify/', HomeController::class, 'index');
 Router::add('GET', '/examify/admin/login', App\Controllers\Admin\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/admin/login', App\Controllers\Admin\LoginController::class, 'login');
+Router::add('GET', '/examify/admin/mata-pelajaran', App\Controllers\Admin\MataPelajaranController::class, 'setMataPelajaran');
+Router::add('POST', '/examify/admin/mata-pelajaran', App\Controllers\Admin\MataPelajaranController::class, 'addMataPelajaran');
 Router::add('GET', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/guru/login', App\Controllers\Guru\LoginController::class, 'login');
 Router::add('GET', '/examify/guru/register', App\Controllers\Guru\RegisterController::class, 'setRegister');
@@ -18,6 +20,8 @@ Router::add('GET', '/examify/siswa/login', App\Controllers\Siswa\LoginController
 Router::add('POST', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'login');
 Router::add('GET', '/examify/siswa/register', App\Controllers\Siswa\RegisterController::class, 'setRegister');
 Router::add('POST', '/examify/siswa/register', App\Controllers\Siswa\RegisterController::class, 'register');
+
+Router::add('POST', '/examify/logout', App\Controllers\HomeController::class, 'logout');
 
 // Router::add('GET', '/users/register', UserController::class, 'register', [MustNotLoginMiddleware::class]);
 // Router::add('POST', '/users/register', UserController::class, 'postRegister', [MustNotLoginMiddleware::class]);

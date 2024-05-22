@@ -75,7 +75,6 @@ CREATE TABLE `guru` (
   `id` int NOT NULL,
   `nip` char(18) NOT NULL,
   `nama` varchar(60) NOT NULL,
-  `jabatan` enum('guru-honorer','guru-pns') NOT NULL,
   `kata_sandi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
