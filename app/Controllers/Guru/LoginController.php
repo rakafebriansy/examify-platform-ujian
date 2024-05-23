@@ -19,10 +19,9 @@ class LoginController
     }
     public function login()
     {
-        $request = $_POST;
-        if ($this->guru_login_request->check($request)) {
-            $guru = Guru::findBy('nip',$request['nip']);
-            if($guru && password_verify($request['kata_sandi'],$guru->kata_sandi)){
+        if ($this->guru_login_request->check($_POST)) {
+            $guru = Guru::findBy('nip',$_POST['nip']);
+            if($guru && password_verify($_POST['kata_sandi'],$guru->kata_sandi)){
                 $_SESSION['id_guru'] = $guru->id;
                 View::redirectTo('/examify/guru/ujian');
 

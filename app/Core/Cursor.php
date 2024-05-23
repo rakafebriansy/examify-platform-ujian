@@ -40,11 +40,12 @@ class Cursor extends Database
                 $query[] = "$column = :$column";
             }
             $query_str = implode(', ',$query);
-            $sql = "UPDATE $table SET ". $query_str ." SET  FROM $table WHERE id = :id;";
+            $sql = "UPDATE $table SET ". $query_str ." WHERE id = :id;";
+            $data['id'] = $id;
             $result = parent::executeNonQuery($sql,$data);
             return $result;
         } catch (\PDOException $e) {
-            return false;
+            throw $e;
         }
     }
     public function delete(string $table, int $id): bool

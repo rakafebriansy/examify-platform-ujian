@@ -19,16 +19,15 @@ class RegisterController
     }
     public function register()
     {
-        $request = $_POST;
-        if ($this->guru_register_request->check($request)) {
-            $checked = Guru::findBy('nama',$request['nama']);
+        if ($this->guru_register_request->check($_POST)) {
+            $checked = Guru::findBy('nama',$_POST['nama']);
             if($checked == false) {
-                $kata_sandi = password_hash($request['kata_sandi'],PASSWORD_DEFAULT);
+                $kata_sandi = password_hash($_POST['kata_sandi'],PASSWORD_DEFAULT);
 
                 $guru = new Guru();
-                $guru->nip = $request['nip'];
-                $guru->nama = $request['nama'];
-                $guru->jabatan = $request['jabatan'];
+                $guru->nip = $_POST['nip'];
+                $guru->nama = $_POST['nama'];
+                $guru->jabatan = $_POST['jabatan'];
                 $guru->kata_sandi = $kata_sandi;
 
                 if($guru->insert()) {

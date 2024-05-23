@@ -35,6 +35,8 @@ class Database
     }
     public function executeNonQuery(string $sql, array $data = []): bool
     {
+        var_dump($sql);
+        var_dump($data);
         $this->connect();
         $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $statement = $this->connection->prepare($sql);

@@ -22,8 +22,7 @@ class MataPelajaranController
     }
     public function buatMataPelajaran()
     {
-        $request = $_POST;
-        if ($this->admin_mata_pelajaran_request->check($request)) {
+        if ($this->admin_mata_pelajaran_request->check($_POST)) {
             $mata_pelajaran = new MataPelajaran();
             $mata_pelajaran->nama = $_POST['nama'];
             $mata_pelajaran->id_admin = $_SESSION['id_admin'];
@@ -39,9 +38,8 @@ class MataPelajaranController
     }
     public function hapusMataPelajaran()
     {
-        $request = $_POST;
-        if (isset($request['id'])) {
-            $mata_pelajaran = MataPelajaran::find($request['id']);
+        if (isset($_POST['id'])) {
+            $mata_pelajaran = MataPelajaran::find($_POST['id']);
             if($mata_pelajaran->delete()){
                 $message = 'Mata pelajaran berhasil dihapus.';
                 View::redirectWith('/examify/admin/mata-pelajaran',$message);

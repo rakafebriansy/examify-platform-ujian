@@ -19,10 +19,9 @@ class LoginController
     }
     public function login()
     {
-        $request = $_POST;
-        if ($this->siswa_login_request->check($request)) {
-            $siswa = Siswa::findBy('nis',$request['nis']);
-            if(isset($siswa) && password_verify($request['kata_sandi'],$siswa->kata_sandi)){
+        if ($this->siswa_login_request->check($_POST)) {
+            $siswa = Siswa::findBy('nis',$_POST['nis']);
+            if(isset($siswa) && password_verify($_POST['kata_sandi'],$siswa->kata_sandi)){
                 $_SESSION['id_siswa'] = $siswa->id;
                 View::redirectTo('/examify/siswa/login');
             }

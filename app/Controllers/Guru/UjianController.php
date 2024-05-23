@@ -7,12 +7,15 @@ use App\Models\MataPelajaran;
 use App\Models\Soal;
 use App\Models\Ujian;
 use App\Requests\GuruBuatUjianRequest;
+use App\Requests\GuruUbahUjianRequest;
 
 class UjianController
 {
     private GuruBuatUjianRequest $guru_buat_ujian_request;
+    private GuruUbahUjianRequest $guru_ubah_ujian_request;
     public function __construct() {
         $this->guru_buat_ujian_request = new GuruBuatUjianRequest();
+        $this->guru_ubah_ujian_request = new GuruUbahUjianRequest();
     }
     public function setUjian()
     {
@@ -31,13 +34,11 @@ class UjianController
     }
     public function buatUjian()
     {
-        $request = $_POST;
-        if($this->guru_buat_ujian_request->check($request)) {
+        if($this->guru_buat_ujian_request->check($_POST)) {
             $ujian = new Ujian();
-            $ujian->nama = $request['nama'];
-            $ujian->tanggal_ujian = $request['tanggal_ujian'];
-            $ujian->token = uniqid();
-            $ujian->id_mata_pelajaran = $request['id_mata_pelajaran'];
+            $ujian->nama = $_POST['nama'];
+            $ujian->tanggal_ujian = $_POST['tanggal_ujian'];
+            $ujian->id_mata_pelajaran = $_POST['id_mata_pelajaran'];
             $ujian->id_guru = $_SESSION['id_guru'];
             if($ujian->insert()) {
                 $message = 'Ujian berhasil ditambahkan.';
@@ -52,9 +53,8 @@ class UjianController
 
     public function hapusUjian()
     {
-        $request = $_POST;
-        if (isset($request['id'])) {
-            $mata_pelajaran = Ujian::find($request['id']);
+        if (isset($_POST['id'])) {
+            $mata_pelajaran = Ujian::find($_POST['id']);
             if($mata_pelajaran->delete()){
                 $message = 'Ujian berhasil dihapus.';
                 View::redirectWith('/examify/guru/ujian',$message);
@@ -64,13 +64,31 @@ class UjianController
         View::redirectWith('/examify/guru/ujian',$message,true);
     }
 
+    public function ubahUjian()
+    {
+        if($this->guru_ubah_ujian_request->check($_POST)) {
+            $ujian = Ujian::find($_POST['id']);
+            $ujian->nama = $_POST['nama'];
+            $ujian->tanggal_ujian = $_POST['tanggal_ujian'];
+            $ujian->id_mata_pelajaran = $_POST['id_mata_pelajaran'];
+            if($ujian->update()) {
+                $message = 'Ujian berhasil ditambahkan.';
+                View::redirectWith('/examify/guru/ujian',$message);
+            }
+            $message = 'Ujian gagal dihapus.';
+            View::redirectWith('/examify/guru/ujian',$message,true);
+        }
+        $message = $this->guru_buat_ujian_request->getMessage();
+        View::redirectWith('/examify/guru/ujian',$message,true);
+    }
+
     // public function addSoal()
     // {
-    //     $request = $_POST;
-    //     if($this->guru_buat_soal_request->check($request)) {
+    //     $_POST = $_POST;
+    //     if($this->guru_buat_soal_request->check($_POST)) {
     //         $soal = new Soal();
-    //         $soal->pertanyaan = $request['pertanyaan'];
-    //         $soal->kunci_jawaban = $request['kunci_jawaban'];
+    //         $soal->pertanyaan = $_POST['pertanyaan'];
+    //         $soal->kunci_jawaban = $_POST['kunci_jawaban'];
     //         $soal->id_guru = $_SESSION['id_guru'];
     //         if($soal->insert()) {
     //             $message = 'Soal berhasil dibuat.';

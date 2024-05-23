@@ -27,7 +27,7 @@ $js = '../public/js/ujian.js';
     <h3>DAFTAR UJIAN</h3>
     <div class="table-container">
       <div class="d-flex justify-content-start mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buatModal">
           + Tambah
         </button>
       </div>
@@ -58,6 +58,7 @@ $js = '../public/js/ujian.js';
                   <td>
                     <form action="/examify/guru/ujian/hapus" method="post">
                       <input type="hidden" name="id" id="" value="<?= $ujian['id'] ?>">
+                      <button type="button" class="badge text-bg-warning border border-0" data-bs-toggle="modal" data-bs-target="#ubahModal" onclick="fetchUbahUjian(this)">Ubah</button>
                       <button type="submit" class="badge text-bg-danger border border-0">Hapus</button>
                     </form>
                   </td>
@@ -78,11 +79,11 @@ $js = '../public/js/ujian.js';
   </div>
 </main>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="buatModal" tabindex="-1" aria-labelledby="buatModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form action="/examify/guru/ujian" method="post" class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Mata Pelajaran</h1>
+        <h1 class="modal-title fs-5" id="buatModalLabel">Tambah Mata Pelajaran</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -95,8 +96,8 @@ $js = '../public/js/ujian.js';
           <input type="date" name="tanggal_ujian" class="form-control" id="exampleFormControlInput2">
         </div>
         <div class="dropdown">
-          <input type="hidden" name="id_mata_pelajaran" id="mataPelajaranId">
-          <button id="dropdownMataPelajaranBtn" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <input type="hidden" name="id_mata_pelajaran" id="mapelBuatId">
+          <button id="dropdownBuatBtn" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Mata Pelajaran
           </button>
           <ul class="dropdown-menu">
@@ -105,7 +106,7 @@ $js = '../public/js/ujian.js';
                 $count = 1;
                 foreach ($data['mata_pelajarans'] as $mata_pelajaran):
             ?>
-              <li data-id="<?= $mata_pelajaran->id ?>" onclick="dropdownMataPelajaran(this)"><a class="dropdown-item" href="#"><?= $mata_pelajaran->nama ?></a></li>
+              <li data-id="<?= $mata_pelajaran->id ?>" onclick="dropdownBuat(this)"><a class="dropdown-item" href="#"><?= $mata_pelajaran->nama ?></a></li>
             <?php 
                 $count++;
                 endforeach;
@@ -116,6 +117,49 @@ $js = '../public/js/ujian.js';
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Tambah</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal fade" id="ubahModal" tabindex="-1" aria-labelledby="ubahModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="/examify/guru/ujian/ubah" method="post" class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ubahModalLabel">Ubah Mata Pelajaran</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="id" id="ubahId">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Nama Ujian</label>
+          <input value="" type="text" name="nama" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput2" class="form-label">Tanggal Ujian</label>
+          <input value="" type="date" name="tanggal_ujian" class="form-control" id="exampleFormControlInput2">
+        </div>
+        <div class="dropdown">
+          <button id="dropdownUbahBtn" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Mata Pelajaran
+          </button>
+          <ul class="dropdown-menu">
+            <?php 
+              if(isset($data['mata_pelajarans']) && count($data['mata_pelajarans']) > 0):
+                $count = 1;
+                foreach ($data['mata_pelajarans'] as $mata_pelajaran):
+            ?>
+                <li data-id="<?= $mata_pelajaran->id ?>" onclick="dropdownUbah(this)"><a class="dropdown-item" href="#"><?= $mata_pelajaran->nama ?></a></li>
+            <?php 
+                $count++;
+              endforeach;
+            endif;
+            ?>
+          </ul>
+          <input type="hidden" name="id_mata_pelajaran" id="mapelUbahId">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Ubah</button>
       </div>
     </form>
   </div>

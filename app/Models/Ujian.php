@@ -23,7 +23,7 @@ class Ujian extends Model implements IModel
         $data = [
             'nama' => $this->nama,
             'tanggal_ujian' => $this->tanggal_ujian,
-            'token' => $this->token,
+            'token' => uniqid(),
             'id_mata_pelajaran' => $this->id_mata_pelajaran,
             'id_guru' => $this->id_guru
         ];
@@ -35,9 +35,8 @@ class Ujian extends Model implements IModel
         $data = [
             'nama' => $this->nama,
             'tanggal_ujian' => $this->tanggal_ujian,
-            'token' => $this->token,
             'id_mata_pelajaran' => $this->id_mata_pelajaran,
-            'id_guru' => $this->id_guru
+            'token' => uniqid(),
         ];
         $result = $this->db->update(self::$table, $data, $this->id);
         return $result;
@@ -60,6 +59,25 @@ class Ujian extends Model implements IModel
             $ujian->token = $result['token'];
             $ujian->id_mata_pelajaran = $result['id_mata_pelajaran'];
             $ujian->id_guru = $result['id_guru'];
+    
+            return $ujian;
+        }
+        
+        return false;
+    }    
+    public static function findJSON(int $id): array|false
+    {
+        $db = new Cursor();
+        $result = $db->readOne(self::$table, ['id','=',$id]);
+
+        if($result) {
+            $ujian = [];
+            $ujian['id'] = $result['id'];
+            $ujian['nama'] = $result['nama'];
+            $ujian['tanggal_ujian'] = $result['tanggal_ujian'];
+            $ujian['token'] = $result['token'];
+            $ujian['id_mata_pelajaran'] = $result['id_mata_pelajaran'];
+            $ujian['id_guru'] = $result['id_guru'];
     
             return $ujian;
         }

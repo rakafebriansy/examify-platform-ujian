@@ -20,10 +20,9 @@ class LoginController
     }
     public function login()
     {
-        $request = $_POST;
-        if ($this->admin_login_request->check($request)) {
-            $admin = Admin::findBy('nama_pengguna',$request['nama_pengguna']);
-            if(isset($admin) && $request['kata_sandi'] == $admin->kata_sandi){
+        if ($this->admin_login_request->check($_POST)) {
+            $admin = Admin::findBy('nama_pengguna',$_POST['nama_pengguna']);
+            if(isset($admin) && $_POST['kata_sandi'] == $admin->kata_sandi){
                 $_SESSION['id_admin'] = $admin->id;
                 View::redirectTo('/examify/admin/mata-pelajaran');
             }
