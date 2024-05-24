@@ -118,8 +118,7 @@ CREATE TABLE `siswa` (
 CREATE TABLE `soal` (
   `id` int NOT NULL,
   `pertanyaan` text NOT NULL,
-  `kunci_jawaban` char(1) NOT NULL,
-  `id_guru` int NOT NULL
+  `kunci_jawaban` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -193,9 +192,7 @@ ALTER TABLE `siswa`
 -- Indexes for table `soal`
 --
 ALTER TABLE `soal`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_guru` (`id_guru`);
-
+  ADD PRIMARY KEY (`id`);
 --
 -- Indexes for table `ujian`
 --
@@ -285,12 +282,6 @@ ALTER TABLE `detail_ujian`
 --
 ALTER TABLE `jawaban`
   ADD CONSTRAINT `jawaban_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `soal` (`id`);
-
---
--- Constraints for table `soal`
---
-ALTER TABLE `soal`
-  ADD CONSTRAINT `soal_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id`);
 
 --
 -- Constraints for table `ujian`

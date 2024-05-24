@@ -1,0 +1,48 @@
+#dropdowns > div:nth-child(1) > button:first-child {
+    border-top-left-radius: 0.375rem !important;
+    border-bottom-left-radius: 0.375rem !important;
+}
+.text-box {
+    width: 80% !important;
+}
+.text-box .btn {
+    --bs-btn-width: 100%
+}
+
+.dropdown-menu {
+    --bs-dropdown-min-width: 5rem;
+}
+
+main > div {
+    height: 100vh !important;
+}
+
+main > div > form {
+    background-color: #052C65;
+    color: white;
+}
+main ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+main ul li .tags {
+    height: 50%;
+    text-align: center;
+    border-radius: 10%;
+    background-color: #052C65;
+    color: white;
+}
+main > div h3, main > div .btn {
+    font-weight: bold;
+}
+
+@media (max-width: 640px) {
+
+}
+@media (min-width: 768px) {
+    .hero-auth {
+        height: 100vh;
+        width: 75vw;
+    }
+}

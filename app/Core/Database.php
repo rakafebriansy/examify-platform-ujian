@@ -33,15 +33,17 @@ class Database
         $this->close();
         return $result;
     }
-    public function executeNonQuery(string $sql, array $data = []): bool
+    public function executeNonQuery(string $sql, array $data = [], $get_id = false): bool
     {
-        var_dump($sql);
-        var_dump($data);
         $this->connect();
         $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $statement = $this->connection->prepare($sql);
         $statement->execute($data);
-        $result = $statement->rowCount();
+        if($get_id) {
+            $result = $this->connection->lastInsertId();
+        } else {
+            $result = $statement->rowCount();
+        }
         $this->close();
         return $result;
     }
@@ -58,7 +60,6 @@ class Database
         $this->close();
         return $result;
     }
-
 }
 
 ?>

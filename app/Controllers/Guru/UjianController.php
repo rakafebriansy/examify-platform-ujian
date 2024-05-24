@@ -3,9 +3,12 @@
 namespace App\Controllers\Guru;
 use App\Core\Cursor;
 use App\Core\View;
+use App\Models\DetailSoal;
+use App\Models\Jawaban;
 use App\Models\MataPelajaran;
 use App\Models\Soal;
 use App\Models\Ujian;
+use App\Requests\GuruBuatSoalRequest;
 use App\Requests\GuruBuatUjianRequest;
 use App\Requests\GuruUbahUjianRequest;
 
@@ -13,9 +16,11 @@ class UjianController
 {
     private GuruBuatUjianRequest $guru_buat_ujian_request;
     private GuruUbahUjianRequest $guru_ubah_ujian_request;
+    private GuruBuatSoalRequest $guru_buat_soal_request;
     public function __construct() {
         $this->guru_buat_ujian_request = new GuruBuatUjianRequest();
         $this->guru_ubah_ujian_request = new GuruUbahUjianRequest();
+        $this->guru_buat_soal_request = new GuruBuatSoalRequest();
     }
     public function setUjian()
     {
@@ -82,24 +87,57 @@ class UjianController
         View::redirectWith('/examify/guru/ujian',$message,true);
     }
 
-    // public function addSoal()
-    // {
-    //     $_POST = $_POST;
-    //     if($this->guru_buat_soal_request->check($_POST)) {
-    //         $soal = new Soal();
-    //         $soal->pertanyaan = $_POST['pertanyaan'];
-    //         $soal->kunci_jawaban = $_POST['kunci_jawaban'];
-    //         $soal->id_guru = $_SESSION['id_guru'];
-    //         if($soal->insert()) {
-    //             $message = 'Soal berhasil dibuat.';
-    //             View::redirectWith('/guru/soal',$message);
-    //         }
-    //         $message = 'Soal gagal dibuat.';
-    //         View::redirectWith('/guru/soal',$message,true);
-    //     }
-    //     $message = $this->guru_buat_soal_request->getMessage();
-    //     View::redirectWith('/guru/soal',$message,true);
-    // }
+
+    public function setSoal(string $id_ujian)
+    {
+        $cursor = new Cursor();
+        $sql = <<<SQL
+            SELECT ujian.id, ujian.nama as nama_ujian, mata_pelajaran.nama as mata_pelajaran 
+            FROM ujian INNER JOIN mata_pelajaran ON ujian.id_mata_pelajaran = mata_pelajaran.id;
+        SQL;
+        $ujian = $cursor->executeNoBind($sql);
+        View::set('guru/soal',[
+            'title' => 'Guru | Soal',
+            'ujian' => $ujian
+        ]);
+    }
+    public function buatSoal()
+    {
+        $id_ujian = $_POST['id_ujian'];
+        if($this->guru_buat_soal_request->check($_POST)) {
+            $soal = new Soal();
+            $soal->pertanyaan = $_POST['pertanyaan'];
+            $soal->kunci_jawaban = $_POST['kunci_jawaban'];
+            $id_soal = $soal->insert(true);
+            if(isset($id_soal)) {
+                foreach ($_POST['jawaban'] as $opsi => $deskripsi) {
+                    $jawaban = new Jawaban();
+                    $jawaban->jawaban = $deskripsi;
+                    $jawaban->opsi = substr($opsi,-1);
+                    $jawaban->id_soal = $id_soal;
+                    $jawaban->insert();
+                }
+
+                $detail_soal = new DetailSoal();
+                $detail_soal->id_ujian = $id_ujian;
+                $detail_soal->id_soal = $id_soal;
+                if($detail_soal->insert()) {
+                    $message = 'Soal berhasil dibuat.';
+                    View::redirectWith('/examify/guru/soal/' . $id_ujian,$message);
+                }
+            }
+            $message = 'Soal gagal dibuat.';
+            View::redirectWith('/examify/guru/soal/' . $id_ujian,$message,true);
+        }
+        $message = $this->guru_buat_soal_request->getMessage();
+        View::redirectWith('/examify/guru/soal/' . $id_ujian,$message,true);
+    }
+    public function ajaxUbahUjian()
+    {
+        $id = $_POST['id'];
+        $ujian = Ujian::findJSON($id);
+        echo json_encode($ujian);
+    }
 }
 
 ?>

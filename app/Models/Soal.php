@@ -17,14 +17,13 @@ class Soal extends Model implements IModel
     public function __construct() {
         parent::__construct();
     }
-    public function insert(): bool
+    public function insert($get_id = false): bool
     {
         $data = [
             'pertanyaan' => $this->pertanyaan,
             'kunci_jawaban' => $this->kunci_jawaban,
-            'id_guru' => $this->id_guru,
         ];
-        $result = $this->db->create(self::$table,$data);
+        $result = $this->db->create(self::$table,$data, $get_id);
         return $result;
     }
     public function update(): bool
@@ -32,7 +31,6 @@ class Soal extends Model implements IModel
         $data = [
             'pertanyaan' => $this->pertanyaan,
             'kunci_jawaban' => $this->kunci_jawaban,
-            'id_guru' => $this->id_guru,
         ];
         $result = $this->db->update(self::$table, $data, $this->id);
         return $result;
@@ -52,7 +50,6 @@ class Soal extends Model implements IModel
             $soal->id = $result['id'];
             $soal->nama_pengguna = $result['pertanyaan'];
             $soal->nama_pengguna = $result['kunci_jawaban'];
-            $soal->nama_pengguna = $result['id_guru'];
     
             return $soal;
         }

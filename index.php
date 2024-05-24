@@ -22,13 +22,14 @@ Router::add('GET', '/examify/guru/ujian', App\Controllers\Guru\UjianController::
 Router::add('POST', '/examify/guru/ujian', App\Controllers\Guru\UjianController::class, 'buatUjian');
 Router::add('POST', '/examify/guru/ujian/hapus', App\Controllers\Guru\UjianController::class, 'hapusUjian');
 Router::add('POST', '/examify/guru/ujian/ubah', App\Controllers\Guru\UjianController::class, 'ubahUjian');
+Router::add('POST', '/examify/guru/soal', App\Controllers\Guru\UjianController::class, 'buatSoal');
+Router::add('GET', '/examify/guru/soal/([0-9a-zA-Z]*)', App\Controllers\Guru\UjianController::class, 'setSoal');
 Router::add('GET', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'setLogin');
 Router::add('POST', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'login');
 Router::add('GET', '/examify/siswa/register', App\Controllers\Siswa\RegisterController::class, 'setRegister');
 Router::add('POST', '/examify/siswa/register', App\Controllers\Siswa\RegisterController::class, 'register');
 
-Router::add('POST', '/examify/ajax/ubah-ujian', AjaxController::class, 'ubahUjian');
-Router::add('GET', '/examify/ajax/ubah-ujian', AjaxController::class, 'ubahUjian');
+Router::add('POST', '/examify/ajax/ubah-ujian', App\Controllers\Guru\UjianController::class, 'ajaxUbahUjian');
 
 Router::add('POST', '/examify/logout', App\Controllers\HomeController::class, 'logout');
 

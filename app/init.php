@@ -28,7 +28,6 @@ require 'app/Requests/GuruBuatSoalRequest.php';
 require 'app/Requests/GuruBuatUjianRequest.php';
 require 'app/Requests/GuruUbahUjianRequest.php';
 require 'app/Controllers/HomeController.php';
-require 'app/Controllers/AjaxController.php';
 require 'app/Requests/SiswaLoginRequest.php';
 require 'app/Requests/SiswaRegisterRequest.php';
 require 'app/Controllers/Admin/LoginController.php';

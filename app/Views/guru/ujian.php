@@ -58,6 +58,7 @@ $js = '../public/js/ujian.js';
                   <td>
                     <form action="/examify/guru/ujian/hapus" method="post">
                       <input type="hidden" name="id" id="" value="<?= $ujian['id'] ?>">
+                      <a href="<?='/examify/guru/soal/' . $ujian['id']?>" class="badge text-bg-primary border border-0" style="text-decoration: none">Detail</a>
                       <button type="button" class="badge text-bg-warning border border-0" data-bs-toggle="modal" data-bs-target="#ubahModal" onclick="fetchUbahUjian(this)">Ubah</button>
                       <button type="submit" class="badge text-bg-danger border border-0">Hapus</button>
                     </form>

@@ -14,7 +14,7 @@ class Cursor extends Database
     {
         parent::close();
     }
-    public function create(string $table, array $data): bool
+    public function create(string $table, array $data, $get_id = false): bool
     {
         try {
             $columns_str = [];
@@ -26,7 +26,7 @@ class Cursor extends Database
             $columns_str = implode(', ',$columns_str);
             $bind_str = implode(', ',$bind_str);
             $sql = "INSERT INTO $table ($columns_str) VALUES ($bind_str);";
-            $result = parent::executeNonQuery($sql,$data);
+            $result = parent::executeNonQuery($sql,$data,$get_id);
             return $result;
         } catch (\PDOException $e) {
             throw $e;
