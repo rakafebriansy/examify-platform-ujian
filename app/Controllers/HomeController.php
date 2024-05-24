@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Core\Seeder;
 use App\Core\View;
 
 class HomeController
@@ -13,6 +14,16 @@ class HomeController
     {
         session_destroy();
         View::redirectTo('/examify/');
+    }
+    public function fresh()
+    {
+        $seeder = new Seeder();
+        if($seeder->fresh()) {
+            echo 'Fresh!';
+        } else {
+            echo 'Nope';
+        }
+        exit;
     }
 }
 

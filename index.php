@@ -33,6 +33,8 @@ Router::add('POST', '/examify/ajax/ubah-ujian', App\Controllers\Guru\UjianContro
 
 Router::add('POST', '/examify/logout', App\Controllers\HomeController::class, 'logout');
 
+Router::add('GET', '/examify/fresh', App\Controllers\HomeController::class, 'fresh');
+
 // Router::add('GET', '/users/register', UserController::class, 'register', [MustNotLoginMiddleware::class]);
 // Router::add('POST', '/users/register', UserController::class, 'postRegister', [MustNotLoginMiddleware::class]);
 // Router::add('GET', '/users/login', UserController::class, 'login', [MustNotLoginMiddleware::class]);
