@@ -11,7 +11,14 @@ $js = '../../public/js/soal.js';
             <?php echo $_SESSION['errors'] ?>
             <script>alert($_SESSION['errors'])</script>
         <?php unset($_SESSION['errors']); endif ?>
-        <form action="/examify/guru/soal" method="POST" class="col d-flex flex-column align-items-center justify-content-center">
+        <form action="/examify/guru/soal" method="POST" class="col-3 d-flex flex-column align-items-center justify-content-start">
+            <div class="flex justify-content-start px-4 py-5" style="width: 100% !important;">
+                <a href="/examify/guru/ujian">
+                    <svg style="top: 2rem !important; left: 2rem !important;" width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.867 34.6667L35.8003 49.6001L32.0003 53.3334L10.667 32.0001L32.0003 10.6667L35.8003 14.4001L20.867 29.3334H53.3337V34.6667H20.867Z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
             <div class="mb-1 text-center">
                 <h3>TAMBAH SOAL</h3>
             </div>
@@ -49,56 +56,52 @@ $js = '../../public/js/soal.js';
                         <li><a class="dropdown-item" href="#" onclick="dropdownKunciJawaban(this)">D</a></li>
                     </ul>
                 </div>
-                <button class="btn btn-primary" type="submit">TAMBAH</button>
+                <button class="btn btn-primary" type="submit">Tambah</button>
             </div>
         </form>
-        <div class="col-9 p-0">
-            <input type="hidden" name="" value="0" id="count">
-            <div class="container">
-                <div class=""></div>
-                <div class="">
-                    <ul>
-                        <?php 
-                            $count = 0;
-                            foreach ($soals as $soal) :
-                        ?>
-                        <li class="row px-5 pt-5 gap-5">
-                            <div class="tags p-2 col-1 d-flex justify-content-center align-items-center">
-                                <p class="fw-bold m-0">Soal <?= $count + 1;?></p>
-                            </div>
-                            <div class="card col-10">
-                                <div class="card-body">
-                                    <p class="card-text"><?= $soal['pertanyaan'];?></p>
-                                    <div class="form-check">
-                                        <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                           <?= $jawabans[$count][0]['jawaban'];?>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            <?= $jawabans[$count][1]['jawaban'];?>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            <?= $jawabans[$count][2]['jawaban'];?>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            <?= $jawabans[$count][3]['jawaban'];?>
-                                        </label>
-                                    </div>
+        <div class="col-9 p-0 px-5">
+            <div id="body-soal">
+                <ul>
+                    <?php 
+                        $count = 0;
+                        foreach ($soals as $soal) :
+                    ?>
+                    <li class="row pt-5 gap-5">
+                        <div class="tags p-2 col-1 d-flex justify-content-center align-items-center">
+                            <p class="fw-bold m-0">Soal <?= $count + 1;?></p>
+                        </div>
+                        <div class="card col-10">
+                            <div class="card-body">
+                                <p class="card-text"><?= $soal['pertanyaan'];?></p>
+                                <div class="form-check">
+                                    <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        <?= $jawabans[$count][0]['jawaban'];?>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        <?= $jawabans[$count][1]['jawaban'];?>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        <?= $jawabans[$count][2]['jawaban'];?>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        <?= $jawabans[$count][3]['jawaban'];?>
+                                    </label>
                                 </div>
                             </div>
-                        </li>
-                        <?php $count++;endforeach; ?>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                    <?php $count++;endforeach; ?>
+                </ul>
             </div>
         </div>
     </div>
