@@ -96,18 +96,36 @@ class UjianController
             FROM ujian INNER JOIN mata_pelajaran ON ujian.id_mata_pelajaran = mata_pelajaran.id;
         SQL;
         $sql_soal = <<<SQL
-            SELECT ujian.id AS id_ujian, soal.id AS id_soal, jawaban.id AS id_jawaban, ujian.nama as nama_ujian, ujian.tanggal_ujian, soal.pertanyaan, soal.kunci_jawaban, jawaban.jawaban, jawaban.opsi, mata_pelajaran.nama as nama_mata_pelajaran FROM ujian
+            SELECT soal.* FROM ujian
+            INNER JOIN detail_soal ON (ujian.id = detail_soal.id_ujian)
+            INNER JOIN soal ON (soal.id = detail_soal.id_soal)
+            WHERE ujian.id = 1;
+        SQL;
+        $sql_jawaban = <<<SQL
+            SELECT jawaban.* FROM ujian
             INNER JOIN detail_soal ON (ujian.id = detail_soal.id_ujian)
             INNER JOIN soal ON (soal.id = detail_soal.id_soal)
             INNER JOIN jawaban ON (jawaban.id_soal = soal.id)
-            INNER JOIN mata_pelajaran ON (mata_pelajaran.id = ujian.id_mata_pelajaran)
             WHERE ujian.id = 1;
         SQL;
         $ujian = $cursor->executeNoBind($sql_ujian);
-        $soal = $cursor;
+
+        $soals = $cursor->executeNoBind($sql_soal,true);
+        $jawabans = $cursor->executeNoBind($sql_jawaban,true);
+        $jawaban_wrapper = [];
+        $jawaban_group = [];
+        foreach ($jawabans as $key => $jawaban) {
+            $jawaban_group[] = $jawaban;
+            if(($key + 1) % 4 == 0) {
+                $jawaban_wrapper[] = $jawaban_group;
+                $jawaban_group = [];
+            }
+        }
         View::set('guru/soal',[
             'title' => 'Guru | Soal',
-            'ujian' => $ujian
+            'ujian' => $ujian,
+            'soals' => $soals,
+            'jawabans' => $jawaban_wrapper
         ]);
     }
     public function buatSoal()

@@ -58,40 +58,45 @@ $js = '../../public/js/soal.js';
                 <div class=""></div>
                 <div class="">
                     <ul>
-                        <li class="row p-5 gap-5">
+                        <?php 
+                            $count = 0;
+                            foreach ($soals as $soal) :
+                        ?>
+                        <li class="row px-5 pt-5 gap-5">
                             <div class="tags p-2 col-1 d-flex justify-content-center align-items-center">
-                                <p class="fw-bold m-0">Soal 1</p>
+                                <p class="fw-bold m-0">Soal <?= $count + 1;?></p>
                             </div>
                             <div class="card col-10">
                                 <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p class="card-text"><?= $soal['pertanyaan'];?></p>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                         <label class="form-check-label" for="flexRadioDefault1">
-                                           A. Default radio
+                                           <?= $jawabans[$count][0]['jawaban'];?>
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                         <label class="form-check-label" for="flexRadioDefault1">
-                                            B. Default radio
+                                            <?= $jawabans[$count][1]['jawaban'];?>
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                         <label class="form-check-label" for="flexRadioDefault1">
-                                            C. Default radio
+                                            <?= $jawabans[$count][2]['jawaban'];?>
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                        <input value="<?= $jawabans[$count][0]['opsi'];?>" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                                         <label class="form-check-label" for="flexRadioDefault1">
-                                            D. Default radio
+                                            <?= $jawabans[$count][3]['jawaban'];?>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </li>
+                        <?php $count++;endforeach; ?>
                     </ul>
                 </div>
             </div>
