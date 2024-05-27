@@ -17,13 +17,22 @@ class Soal extends Model implements IModel
     public function __construct() {
         parent::__construct();
     }
-    public function insert($get_id = false): bool
+    public function insert(): bool
     {
         $data = [
             'pertanyaan' => $this->pertanyaan,
             'kunci_jawaban' => $this->kunci_jawaban,
         ];
-        $result = $this->db->create(self::$table,$data, $get_id);
+        $result = $this->db->create(self::$table,$data);
+        return $result;
+    }
+    public function insertGetId(): int
+    {
+        $data = [
+            'pertanyaan' => $this->pertanyaan,
+            'kunci_jawaban' => $this->kunci_jawaban,
+        ];
+        $result = $this->db->create(self::$table,$data,true);
         return $result;
     }
     public function update(): bool

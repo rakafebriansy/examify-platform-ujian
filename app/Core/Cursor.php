@@ -14,7 +14,7 @@ class Cursor extends Database
     {
         parent::close();
     }
-    public function create(string $table, array $data, $get_id = false): bool
+    public function create(string $table, array $data, $get_id = false): bool|int
     {
         try {
             $columns_str = [];

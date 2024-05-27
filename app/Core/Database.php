@@ -33,14 +33,14 @@ class Database
         $this->close();
         return $result;
     }
-    public function executeNonQuery(string $sql, array $data = [], $get_id = false): bool
+    public function executeNonQuery(string $sql, array $data = [], $get_id = false): bool|int
     {
         $this->connect();
         $this->connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $statement = $this->connection->prepare($sql);
         $statement->execute($data);
         if($get_id) {
-            $result = $this->connection->lastInsertId();
+            $result = intval($this->connection->lastInsertId());
         } else {
             $result = $statement->rowCount();
         }
