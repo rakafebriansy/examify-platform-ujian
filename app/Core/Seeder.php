@@ -45,6 +45,13 @@ class Seeder extends Cursor
             'nama' => 'kiko',
             'kata_sandi' => password_hash('123',PASSWORD_DEFAULT)
         ]);
+        parent::create('siswa', [
+            'nis' => '12345678',
+            'nama' => 'raider',
+            'jurusan' => 'mipa',
+            'kelas' => '6',
+            'kata_sandi' => password_hash('123',PASSWORD_DEFAULT)
+        ]);
     }
     public function fresh() 
     {

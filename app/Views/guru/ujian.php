@@ -56,7 +56,7 @@ $js = '../public/js/ujian.js';
                   <td><?= $ujian['mata_pelajaran'];?></td>
                   <td><?= $ujian['token'];?></td>
                   <td>
-                    <form action="/examify/guru/ujian/hapus" method="post">
+                    <form action="/examify/guru/ujian/hapus" data-id="<?= $ujian['id'] ?>" method="post">
                       <input type="hidden" name="id" id="" value="<?= $ujian['id'] ?>">
                       <a href="<?='/examify/guru/soal/' . $ujian['id']?>" class="badge text-bg-primary border border-0" style="text-decoration: none">Detail</a>
                       <button type="button" class="badge text-bg-warning border border-0" data-bs-toggle="modal" data-bs-target="#ubahModal" onclick="fetchUbahUjian(this)">Ubah</button>
@@ -126,7 +126,7 @@ $js = '../public/js/ujian.js';
   <div class="modal-dialog">
     <form action="/examify/guru/ujian/ubah" method="post" class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="ubahModalLabel">Ubah Mata Pelajaran</h1>
+        <h1 class="modal-title fs-5" id="ubahModalLabel">Ubah Ujian</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

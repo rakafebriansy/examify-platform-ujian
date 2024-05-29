@@ -162,7 +162,7 @@ class UjianController
     
     public function ajaxUbahUjian()
     {
-        $id = $_POST['id'];
+        $id = intval($_POST['id']);
         $ujian = Ujian::findJSON($id);
         echo json_encode($ujian);
     }

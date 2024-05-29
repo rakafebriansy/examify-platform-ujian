@@ -54,15 +54,15 @@ class Siswa extends Model implements IModel
         $result = $db->readOne(self::$table, ['id','=',$id]);
         
         if($result) {
-            $mata_pelajaran = new Siswa();
-            $mata_pelajaran->id = $result['id'];
-            $mata_pelajaran->nama_pengguna = $result['nis'];
-            $mata_pelajaran->nama_pengguna = $result['nama'];
-            $mata_pelajaran->nama_pengguna = $result['jurusan'];
-            $mata_pelajaran->nama_pengguna = $result['kelas'];
-            $mata_pelajaran->nama_pengguna = $result['kata_sandi'];
+            $siswa = new Siswa();
+            $siswa->id = $result['id'];
+            $siswa->nis = $result['nis'];
+            $siswa->nama = $result['nama'];
+            $siswa->jurusan = $result['jurusan'];
+            $siswa->kelas = $result['kelas'];
+            $siswa->kata_sandi = $result['kata_sandi'];
     
-            return $mata_pelajaran;
+            return $siswa;
         }
         
         return false;
@@ -79,24 +79,24 @@ class Siswa extends Model implements IModel
         $db->close();
         return $siswas;
     }
-    public static function findBy(string $column,string $nama_pengguna): object|null
+    public static function findBy(string $column,string $nama_pengguna): object|bool
     {
         $db = new Cursor();
         $result = $db->readOne(self::$table, [$column,'=',$nama_pengguna]);
 
-        if(!isset($result)) {
-            return null;
+        if($result) {
+            $siswa = new Siswa();
+            $siswa->id = $result['id'];
+            $siswa->nis = $result['nis'];
+            $siswa->nama = $result['nama'];
+            $siswa->jurusan = $result['jurusan'];
+            $siswa->kelas = $result['kelas'];
+            $siswa->kata_sandi = $result['kata_sandi'];
+            
+            return $siswa;
         }
         
-        $siswa = new Siswa();
-        $siswa->id = $result['id'];
-        $siswa->nama_pengguna = $result['nis'];
-        $siswa->nama_pengguna = $result['nama'];
-        $siswa->nama_pengguna = $result['jurusan'];
-        $siswa->nama_pengguna = $result['kelas'];
-        $siswa->nama_pengguna = $result['kata_sandi'];
-
-        return $siswa;
+        return false;
     }
 }
 
