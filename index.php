@@ -28,11 +28,15 @@ Router::add('GET', '/examify/siswa/login', App\Controllers\Siswa\LoginController
 Router::add('POST', '/examify/siswa/login', App\Controllers\Siswa\LoginController::class, 'login');
 Router::add('GET', '/examify/siswa/register', App\Controllers\Siswa\RegisterController::class, 'setRegister');
 Router::add('POST', '/examify/siswa/register', App\Controllers\Siswa\RegisterController::class, 'register');
+Router::add('GET', '/examify/siswa/ujian', App\Controllers\Siswa\UjianController::class, 'setUjian');
+Router::add('GET', '/examify/siswa/ujian/([0-9a-zA-Z]*)', App\Controllers\Siswa\UjianController::class, 'ujian');
+Router::add('POST', '/examify/siswa/ujian/([0-9a-zA-Z]*)', App\Controllers\Siswa\UjianController::class, 'submitUjian');
+Router::add('GET', '/examify/siswa/search-ujian', App\Controllers\Siswa\UjianController::class, 'findUjian');
+Router::add('GET', '/examify/siswa/riwayat-ujian', App\Controllers\Siswa\UjianController::class, 'setRiwayatUjian');
 
 Router::add('POST', '/examify/ajax/ubah-ujian', App\Controllers\Guru\UjianController::class, 'ajaxUbahUjian');
 
 Router::add('POST', '/examify/logout', App\Controllers\HomeController::class, 'logout');
-
 Router::add('GET', '/examify/fresh', App\Controllers\HomeController::class, 'fresh');
 
 // Router::add('GET', '/users/register', UserController::class, 'register', [MustNotLoginMiddleware::class]);

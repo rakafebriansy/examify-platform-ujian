@@ -1,0 +1,57 @@
+#logo-label {
+    width: 6rem;
+}
+
+body {
+    background-color: #E9ECEF;
+}
+
+main .container {
+    border-radius: 4rem;
+    margin-top: 5rem;
+    color: #052C65;
+}
+main .container h3 {
+    text-align: center;
+}
+main .table-container {
+    padding: 2rem;
+    width: 100%;
+    background-color: white;
+}
+main .table-container h6 {
+    font-weight: 700;
+}
+
+footer {
+    color: white;
+    background-color: #052C65;
+}
+footer h4 a {
+    color: white;
+}
+footer p {
+    display: inline-block;
+}
+footer svg {
+    width: 1.4rem;
+}
+
+nav > .container-fluid {
+    padding: 0 2rem 0 2rem;
+    box-sizing: border-box;
+}
+
+nav #navbarNavAltMarkup {
+    justify-content: end;
+}
+
+nav .navbar-nav {
+    cursor: pointer;
+}
+nav {
+    box-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.2);
+}
+.small-shadow {
+    box-shadow: 0.1rem 0.1rem 0.7rem rgba(0, 0, 0, 0.2);
+}

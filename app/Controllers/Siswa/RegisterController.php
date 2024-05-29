@@ -19,7 +19,6 @@ class RegisterController
     }
     public function register()
     {
-        var_dump($_POST);die;
         if ($this->siswa_register_request->check($_POST)) {
             $checked = Siswa::findBy('nama',$_POST['nama']);
             if(!isset($checked)) {

@@ -52,6 +52,34 @@ class Seeder extends Cursor
             'kelas' => '6',
             'kata_sandi' => password_hash('123',PASSWORD_DEFAULT)
         ]);
+        parent::create('ujian',[
+            'nama' => 'UTS Matematika Kelas 12',
+            'tanggal_ujian' => date('Y-m-d'),
+            'token' => uniqid(),
+            'id_mata_pelajaran' => 1,
+            'id_guru' => 1,
+        ]);
+        parent::create('ujian',[
+            'nama' => 'UTS Bahasa Indonesia Kelas 12',
+            'tanggal_ujian' => date('Y-m-d'),
+            'token' => uniqid(),
+            'id_mata_pelajaran' => 2,
+            'id_guru' => 1,
+        ]);
+        parent::create('ujian',[
+            'nama' => 'UTS Bahasa Indonesia Kelas 11',
+            'tanggal_ujian' => date('Y-m-d'),
+            'token' => uniqid(),
+            'id_mata_pelajaran' => 2,
+            'id_guru' => 1,
+        ]);
+        parent::create('ujian',[
+            'nama' => 'UTS Bahasa Indonesia Kelas 10',
+            'tanggal_ujian' => date('Y-m-d'),
+            'token' => uniqid(),
+            'id_mata_pelajaran' => 2,
+            'id_guru' => 1,
+        ]);
     }
     public function fresh() 
     {

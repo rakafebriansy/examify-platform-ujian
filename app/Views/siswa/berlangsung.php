@@ -1,7 +1,7 @@
 <?php 
 $path = __DIR__ . '/..';
-$css = '../public/css/ujian.css'; 
-$js = '../public/js/ujian.js'; 
+$css = '../public/css/berlangsung.css'; 
+$js = '../public/js/berlangsung.js'; 
 ?>
 
 <?php ob_start(); ?>
@@ -23,58 +23,32 @@ $js = '../public/js/ujian.js';
   </div>
 </nav>
 <main>
-  <div class="container d-flex justify-content-center flex-column align-items-center p-3">
-    <h3>DAFTAR UJIAN</h3>
-    <div class="table-container">
-      <div class="d-flex justify-content-start mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buatModal">
-          + Tambah
+  <div class="container d-flex justify-content-center flex-column align-items-start" style="width:100%">
+    <h3>Halo <?= $siswa->nama;?>, Selamat Datang Kembali!</h3>
+    <div class="table-container mt-3 rounded">
+      <h4>DAFTAR UJIAN YANG SEDANG BERLANGSUNG</h4>
+      <form action="/examify/siswa/search-ujian" method="GET" class="input-group mb-4">
+        <input type="text" class="form-control" placeholder="Cari.." aria-label="Cari.." aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary d-flex align-items-center py-2 px-4 m-0" type="button" id="button-addon2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+          </svg>
         </button>
-      </div>
-      <div class="d-flex justify-content-center">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Tanggal Ujian</th>
-              <th scope="col">Nama Ujian</th>
-              <th scope="col">Mata Pelajaran</th>
-              <th scope="col">Token</th>
-              <th scope="col">Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php 
-              if(isset($data['ujians']) && count($data['ujians']) > 0):
-                $count = 1
-            ?>
-              <?php foreach ($data['ujians'] as $ujian): ?>
-                <tr>
-                  <th scope="row"><?= $count;?></th>
-                  <td><?= $ujian['tanggal_ujian'];?></td>
-                  <td><?= $ujian['nama_ujian'];?></td>
-                  <td><?= $ujian['mata_pelajaran'];?></td>
-                  <td><?= $ujian['token'];?></td>
-                  <td>
-                    <form action="/examify/guru/ujian/hapus" data-id="<?= $ujian['id'] ?>" method="post">
-                      <input type="hidden" name="id" id="" value="<?= $ujian['id'] ?>">
-                      <a href="<?='/examify/guru/soal/' . $ujian['id']?>" class="badge text-bg-primary border border-0" style="text-decoration: none">Detail</a>
-                      <button type="button" class="badge text-bg-warning border border-0" data-bs-toggle="modal" data-bs-target="#ubahModal" onclick="fetchUbahUjian(this)">Ubah</button>
-                      <button type="submit" class="badge text-bg-danger border border-0">Hapus</button>
-                    </form>
-                  </td>
-                </tr>
-              <?php 
-                $count++;
-                endforeach; 
-              ?>
-            <?php else: ?>
-            <tr>
-              <td colspan="6" class="text-center">Belum ada data.</td>
-            </tr>
-            <?php endif; ?>
-          </tbody>
-        </table>
+      </form>
+      <div class="row justify-content-around gap-4">
+        <?php if(count($ujians)): ?>
+          <?php foreach($ujians as $ujian): ?>
+            <div class="card col-4 px-0 position-relative small-shadow" style="width:30%;">
+              <img src="../public/images/ujian-1.png" style="width:100%;" class="card-img-top" alt="ujian-<?=$i+1?>">
+              <div class="card-body">
+                <p class="card-text"><a href="/examify/siswa/ujian/<?=$ujian['id']?>" style="color: #052C65; text-decoration:none;"><?= $ujian['nama_ujian'];?></a></p>
+              </div>
+              <div class="position-absolute p-2 fs-6 rounded bg-primary" style="color:white; top:0.6rem; left:0.6rem;"><?= $ujian['mata_pelajaran'];?></div>
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p class="text-center">Data tidak tersedia.</p>
+        <?php endif; ?>
       </div>
     </div>
   </div>

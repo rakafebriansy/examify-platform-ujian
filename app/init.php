@@ -37,5 +37,6 @@ require 'app/Controllers/Guru/LoginController.php';
 require 'app/Controllers/Guru/UjianController.php';
 require 'app/Controllers/Siswa/RegisterController.php';
 require 'app/Controllers/Siswa/LoginController.php';
+require 'app/Controllers/Siswa/UjianController.php';
 
 ?>

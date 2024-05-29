@@ -23,7 +23,7 @@ class LoginController
             $siswa = Siswa::findBy('nis',$_POST['nis']);
             if($siswa && password_verify($_POST['kata_sandi'],$siswa->kata_sandi)){
                 $_SESSION['id_siswa'] = $siswa->id;
-                View::redirectTo('/examify/siswa/login');
+                View::redirectTo('/examify/siswa/ujian');
             }
             $message = 'Nama atau kata sandi salah.';
             View::redirectWith('/examify/siswa/login',$message,true);

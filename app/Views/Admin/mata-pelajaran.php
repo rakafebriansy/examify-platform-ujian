@@ -5,7 +5,7 @@ $css = '../public/css/mata-pelajaran.css';
 ?>
 
 <?php ob_start(); ?>
-<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
+<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary" style="background-color: white !important;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img id="logo-label" src="../public/images/logo-label.png" alt="">
@@ -15,7 +15,7 @@ $css = '../public/css/mata-pelajaran.css';
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <form action="/examify/logout" method="post" class="navbar-nav">
-        <button type="submit" class="bg-light rounded-pill p-2 border border-0">
+        <button type="submit" class=" rounded-pill p-2 border border-0" style="background-color: white !important;">
           Logout
         </button>
       </form>

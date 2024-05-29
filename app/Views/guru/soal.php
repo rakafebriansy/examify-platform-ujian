@@ -9,7 +9,7 @@ $js = '../../public/js/soal.js';
     <div class="row m-0">
         <?php if(isset($_SESSION['errors'])): ?>
             <?php echo $_SESSION['errors'] ?>
-            <script>alert($_SESSION['errors'])</script>
+            <?= "<script>alert(" . $_SESSION['errors'] . ")</script>" ?>
         <?php unset($_SESSION['errors']); endif ?>
         <form action="/examify/guru/soal" method="POST" class="col-3 d-flex flex-column align-items-center justify-content-start">
             <div class="flex justify-content-start px-4 py-5" style="width: 100% !important;">
