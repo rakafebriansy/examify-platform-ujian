@@ -40,9 +40,16 @@ $js = '../public/js/berlangsung.js';
           <?php foreach($ujians as $ujian): ?>
             <div class="card col-4 px-0 position-relative small-shadow" style="width:30%;">
               <img src="../public/images/ujian-1.png" style="width:100%;" class="card-img-top" alt="ujian-<?=$i+1?>">
-              <div class="card-body">
-                <p class="card-text"><a href="/examify/siswa/ujian/<?=$ujian['id']?>" style="color: #052C65; text-decoration:none;"><?= $ujian['nama_ujian'];?></a></p>
-              </div>
+              <pp class="card-body">
+                <?php if(isset($ujian['skor'])): ?>
+                  <div class="d-flex justify-content-between">
+                    <p class="card-text m-0"><?= $ujian['nama_ujian'];?></p>
+                    <p class="bg-success m-0 px-2 py-1 rounded" style="color:white;">skor: <?= $ujian['skor'];?></p>
+                  </div>
+                    <?php else: ?>
+                    <p class="card-text"><a href="/examify/siswa/ujian/<?=$ujian['id']?>" style="color: #052C65; text-decoration:none;"><?= $ujian['nama_ujian'];?></a></p>
+                <?php endif; ?>
+              </pp>
               <div class="position-absolute p-2 fs-6 rounded bg-primary" style="color:white; top:0.6rem; left:0.6rem;"><?= $ujian['mata_pelajaran'];?></div>
             </div>
           <?php endforeach; ?>
@@ -54,91 +61,6 @@ $js = '../public/js/berlangsung.js';
   </div>
 </main>
 
-<div class="modal fade" id="buatModal" tabindex="-1" aria-labelledby="buatModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form action="/examify/guru/ujian" method="post" class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="buatModalLabel">Tambah Mata Pelajaran</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Nama Ujian</label>
-          <input type="text" name="nama" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput2" class="form-label">Tanggal Ujian</label>
-          <input type="date" name="tanggal_ujian" class="form-control" id="exampleFormControlInput2">
-        </div>
-        <div class="dropdown">
-          <input type="hidden" name="id_mata_pelajaran" id="mapelBuatId">
-          <button id="dropdownBuatBtn" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Mata Pelajaran
-          </button>
-          <ul class="dropdown-menu">
-            <?php 
-              if(isset($data['mata_pelajarans']) && count($data['mata_pelajarans']) > 0):
-                $count = 1;
-                foreach ($data['mata_pelajarans'] as $mata_pelajaran):
-            ?>
-              <li data-id="<?= $mata_pelajaran->id ?>" onclick="dropdownBuat(this)"><a class="dropdown-item" href="#"><?= $mata_pelajaran->nama ?></a></li>
-            <?php 
-                $count++;
-                endforeach;
-              endif;
-            ?>
-          </ul>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Tambah</button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="modal fade" id="ubahModal" tabindex="-1" aria-labelledby="ubahModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form action="/examify/guru/ujian/ubah" method="post" class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="ubahModalLabel">Ubah Ujian</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input type="hidden" name="id" id="ubahId">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Nama Ujian</label>
-          <input value="" type="text" name="nama" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput2" class="form-label">Tanggal Ujian</label>
-          <input value="" type="date" name="tanggal_ujian" class="form-control" id="exampleFormControlInput2">
-        </div>
-        <div class="dropdown">
-          <button id="dropdownUbahBtn" class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Mata Pelajaran
-          </button>
-          <ul class="dropdown-menu">
-            <?php 
-              if(isset($data['mata_pelajarans']) && count($data['mata_pelajarans']) > 0):
-                $count = 1;
-                foreach ($data['mata_pelajarans'] as $mata_pelajaran):
-            ?>
-                <li data-id="<?= $mata_pelajaran->id ?>" onclick="dropdownUbah(this)"><a class="dropdown-item" href="#"><?= $mata_pelajaran->nama ?></a></li>
-            <?php 
-                $count++;
-              endforeach;
-            endif;
-            ?>
-          </ul>
-          <input type="hidden" name="id_mata_pelajaran" id="mapelUbahId">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Ubah</button>
-      </div>
-    </form>
-  </div>
-</div>
 
 <?php $body = ob_get_clean(); ?>
 
