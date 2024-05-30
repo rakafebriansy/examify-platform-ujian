@@ -31,8 +31,8 @@ Router::add('POST', '/examify/siswa/register', App\Controllers\Siswa\RegisterCon
 Router::add('GET', '/examify/siswa/ujian', App\Controllers\Siswa\UjianController::class, 'setUjian');
 Router::add('GET', '/examify/siswa/ujian/([0-9a-zA-Z]*)', App\Controllers\Siswa\UjianController::class, 'ujian');
 Router::add('POST', '/examify/siswa/ujian/([0-9a-zA-Z]*)', App\Controllers\Siswa\UjianController::class, 'submitUjian');
-Router::add('GET', '/examify/siswa/search-ujian', App\Controllers\Siswa\UjianController::class, 'findUjian');
 Router::add('GET', '/examify/siswa/riwayat-ujian', App\Controllers\Siswa\UjianController::class, 'setRiwayatUjian');
+Router::add('GET', '/examify/siswa-ujian/([0-9a-zA-Z]*)', App\Controllers\Siswa\UjianController::class, 'findUjian');
 
 Router::add('POST', '/examify/ajax/ubah-ujian', App\Controllers\Guru\UjianController::class, 'ajaxUbahUjian');
 

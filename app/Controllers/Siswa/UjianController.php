@@ -11,8 +11,6 @@ class UjianController
 {
     public function setUjian()
     {
-        $id_siswa = $_SESSION['id_siswa'];
-        $mata_pelajarans = MataPelajaran::all();
         $cursor = new Cursor();
         $sql = <<<SQL
             SELECT detail_ujian.skor, ujian.id, tanggal_ujian, token, ujian.nama as nama_ujian, id_guru, mata_pelajaran.nama as mata_pelajaran 
@@ -23,7 +21,6 @@ class UjianController
         $ujians = $cursor->executeNoBind($sql,fetch_all:true);
         View::set('siswa/berlangsung',[
             'title' => 'Siswa | Ujian',
-            'mata_pelajarans' => $mata_pelajarans,
             'ujians' => $ujians,
             'siswa' => $siswa,
         ]);
@@ -105,9 +102,23 @@ class UjianController
         $message = 'Jawaban gagal disimpan';
         View::redirectWith('/examify/siswa/ujian',$message, true);
     }
-    public function findUjian()
+    public function findUjian(string $keyword)
     {
-        
+        $keyword = "'%".$keyword."%'";
+        $cursor = new Cursor();
+        $sql = <<<SQL
+            SELECT detail_ujian.skor, ujian.id, tanggal_ujian, token, ujian.nama as nama_ujian, id_guru, mata_pelajaran.nama as mata_pelajaran 
+            FROM ujian INNER JOIN mata_pelajaran ON ujian.id_mata_pelajaran = mata_pelajaran.id
+            LEFT JOIN detail_ujian ON detail_ujian.id_ujian = ujian.id
+            WHERE LOWER(ujian.nama) like LOWER($keyword);
+        SQL;
+        $siswa = Siswa::find($_SESSION['id_siswa']);
+        $ujians = $cursor->executeNoBind($sql,fetch_all:true);
+        View::set('siswa/berlangsung',[
+            'title' => 'Siswa | Ujian',
+            'ujians' => $ujians,
+            'siswa' => $siswa,
+        ]);
     }
 }
 

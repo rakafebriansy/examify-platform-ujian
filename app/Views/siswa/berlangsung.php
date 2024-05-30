@@ -27,9 +27,9 @@ $js = '../public/js/berlangsung.js';
     <h3>Halo <?= $siswa->nama;?>, Selamat Datang Kembali!</h3>
     <div class="table-container mt-3 rounded">
       <h4>DAFTAR UJIAN YANG SEDANG BERLANGSUNG</h4>
-      <form action="/examify/siswa/search-ujian" method="GET" class="input-group mb-4">
-        <input type="text" class="form-control" placeholder="Cari.." aria-label="Cari.." aria-describedby="button-addon2">
-        <button class="btn btn-outline-primary d-flex align-items-center py-2 px-4 m-0" type="button" id="button-addon2">
+      <form id="formCari" method="GET" class="input-group mb-4">
+        <input type="text" id="searching" class="form-control" placeholder="Cari.." aria-label="Cari.." aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary d-flex align-items-center py-2 px-4 m-0" type="button" onclick="cariUjian()" id="button-addon2">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
           </svg>
@@ -37,14 +37,14 @@ $js = '../public/js/berlangsung.js';
       </form>
       <div class="row justify-content-around gap-4">
         <?php if(count($ujians)): ?>
-          <?php foreach($ujians as $ujian): ?>
+          <?php foreach($ujians as $i => $ujian): ?>
             <div class="card col-4 px-0 position-relative small-shadow" style="width:30%;">
               <img src="../public/images/ujian-1.png" style="width:100%;" class="card-img-top" alt="ujian-<?=$i+1?>">
               <pp class="card-body">
                 <?php if(isset($ujian['skor'])): ?>
                   <div class="d-flex justify-content-between">
                     <p class="card-text m-0"><?= $ujian['nama_ujian'];?></p>
-                    <p class="bg-success m-0 px-2 py-1 rounded" style="color:white;">skor: <?= $ujian['skor'];?></p>
+                    <p class="border-success border m-0 px-2 py-1 rounded">Skor: <?= $ujian['skor'];?></p>
                   </div>
                     <?php else: ?>
                     <p class="card-text"><a href="/examify/siswa/ujian/<?=$ujian['id']?>" style="color: #052C65; text-decoration:none;"><?= $ujian['nama_ujian'];?></a></p>

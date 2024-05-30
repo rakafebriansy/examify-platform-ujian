@@ -24,6 +24,7 @@ class Router
     {
         $path = '/examify/';
         if (isset($_SERVER['REQUEST_URI'])) $path = $_SERVER['REQUEST_URI'];
+        if(str_contains($path,'?')) $path = str_replace('?','',$path);
         $method = $_SERVER['REQUEST_METHOD'];
         foreach (self::$routes as $route) {
             $pattern = '#^' . $route['path'] . '$#';
