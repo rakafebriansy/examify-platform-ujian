@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 19, 2024 at 04:02 PM
+-- Generation Time: May 30, 2024 at 12:08 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -93,8 +93,10 @@ CREATE TABLE `jawaban` (
 CREATE TABLE `mata_pelajaran` (
   `id` int NOT NULL,
   `nama` varchar(60) NOT NULL,
-  `id_admin` INT NOT NULL
+  `id_admin` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `siswa`
@@ -193,6 +195,7 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `soal`
   ADD PRIMARY KEY (`id`);
+
 --
 -- Indexes for table `ujian`
 --
@@ -215,25 +218,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `detail_soal`
 --
 ALTER TABLE `detail_soal`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `detail_ujian`
 --
 ALTER TABLE `detail_ujian`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jawaban`
 --
 ALTER TABLE `jawaban`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `mata_pelajaran`
@@ -245,19 +248,19 @@ ALTER TABLE `mata_pelajaran`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ujian`
 --
 ALTER TABLE `ujian`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -284,18 +287,17 @@ ALTER TABLE `jawaban`
   ADD CONSTRAINT `jawaban_ibfk_1` FOREIGN KEY (`id_soal`) REFERENCES `soal` (`id`);
 
 --
+-- Constraints for table `mata_pelajaran`
+--
+ALTER TABLE `mata_pelajaran`
+  ADD CONSTRAINT `mata_pelajaran_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
+
+--
 -- Constraints for table `ujian`
 --
 ALTER TABLE `ujian`
   ADD CONSTRAINT `ujian_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id`),
   ADD CONSTRAINT `ujian_ibfk_2` FOREIGN KEY (`id_mata_pelajaran`) REFERENCES `mata_pelajaran` (`id`);
-COMMIT;
-
---
--- Constraints for table `mata_pelajaran`
---
-ALTER TABLE `mata_pelajaran`
-  ADD CONSTRAINT `mata_pelajaran_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -29,13 +29,17 @@ nav #navbarNavAltMarkup {
     justify-content: end;
 }
 
+#map-canvas {
+    width: 100%;
+}
+
 @media (max-width: 640px) {
     main #carouselExampleCaptions .carousel-inner .carousel-item img:nth-child(1) {
         display: none !important;
     }
     main #carouselExampleCaptions .carousel-inner .carousel-item img:nth-child(2) {
         display: block;
-        width: 100%;
+        width: 90%;
     }
 }
 @media (min-width: 768px) {

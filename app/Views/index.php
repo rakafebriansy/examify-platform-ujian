@@ -123,11 +123,20 @@ $js = 'public/js/index.js';
           </tr>
         </tbody>
       </table>
-      <iframe id="map-canvas" class="map_part" width="900"  height="300"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%&amp;height=100%&amp;hl=en&amp;q=Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">Powered by <a href="https://embedgooglemaps.com">embed google maps</a> and <a href="https://unoregler.se/">uno regler</a></iframe>
+      <iframe id="map-canvas" class="map_part"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%&amp;height=100%&amp;hl=en&amp;q=Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">Powered by <a href="https://embedgooglemaps.com">embed google maps</a> and <a href="https://unoregler.se/">uno regler</a></iframe>
     </div>
-    <div class="col-4">
-
-    </div>
+    <form id="hubungiKami" method="GET" class="col-4">
+      <h5 class="text-center">Hubungi Kami</h5>
+      <div class="mb-2 text-box">
+        <label for="subjek" class="form-label">Subjek</label>
+        <input type="subjek" name="subjek" class="form-control" id="subjek" placeholder="">
+      </div>
+      <div class="mb-2">
+        <label for="pesan" class="form-label">Pesan</label>
+        <textarea class="form-control" id="pesan" rows="3"></textarea>
+      </div>
+      <button type="button" onclick="sendEmail()" class="btn btn-primary mt-2">Submit</button>
+    </form>
   </div>
 </footer>
 <?php $body = ob_get_clean(); ?>
