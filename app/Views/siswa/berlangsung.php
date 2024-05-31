@@ -14,7 +14,7 @@ $js = '../public/js/berlangsung.js';
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <form action="/examify/logout" method="post" class="navbar-nav">
+      <form action="/examify-platform-ujian/logout" method="post" class="navbar-nav">
         <button type="submit" class="rounded-pill p-2 border border-0" style="background-color: white !important;">
           Logout
         </button>
@@ -57,7 +57,7 @@ $js = '../public/js/berlangsung.js';
                     <p class="border-success border m-0 px-2 py-1 rounded">Skor: <?= $ujian['skor'];?></p>
                   </div>
                     <?php else: ?>
-                    <p class="card-text"><a href="/examify/siswa/ujian/<?=$ujian['id']?>" style="color: #052C65; text-decoration:none;"><?= $ujian['nama_ujian'];?></a></p>
+                    <p class="card-text"><a href="/examify-platform-ujian/siswa/ujian/<?=$ujian['id']?>" style="color: #052C65; text-decoration:none;"><?= $ujian['nama_ujian'];?></a></p>
                 <?php endif; ?>
               </pp>
               <div class="position-absolute p-2 fs-6 rounded bg-primary" style="color:white; top:0.6rem; left:0.6rem;"><?= $ujian['mata_pelajaran'];?></div>

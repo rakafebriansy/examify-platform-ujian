@@ -6,7 +6,7 @@ $js = '../../public/js/soal.js';
 
 <?php ob_start(); ?>
 <main>
-    <form class="row m-0 position-relative" action="/examify/siswa/ujian/<?=$ujian['id']?>" method="POST">
+    <form class="row m-0 position-relative" action="/examify-platform-ujian/siswa/ujian/<?=$ujian['id']?>" method="POST">
         <?php if(isset($_SESSION['errors'])): ?>
             <div class="alert alert-danger position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem; z-index:40 !important" role="alert">
                 <?= $_SESSION['errors'];?>
@@ -19,7 +19,7 @@ $js = '../../public/js/soal.js';
         <?php unset($_SESSION['success']); endif ?>
         <div class="col-3 d-flex flex-column align-items-center justify-content-start" style="background-color: #052C65;">
             <div class="flex justify-content-start px-4 py-5" style="width: 100% !important;">
-                <a href="/examify/guru/ujian">
+                <a href="/examify-platform-ujian/siswa/ujian">
                     <svg style="top: 2rem !important; left: 2rem !important;" width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.867 34.6667L35.8003 49.6001L32.0003 53.3334L10.667 32.0001L32.0003 10.6667L35.8003 14.4001L20.867 29.3334H53.3337V34.6667H20.867Z" fill="white"/>
                     </svg>

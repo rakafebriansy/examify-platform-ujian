@@ -16,9 +16,9 @@ $css = '../public/css/auth.css';
             <?= $_SESSION['success'];?>
         </div>
         <?php unset($_SESSION['success']); endif ?>
-        <form action="/examify/siswa/login" method="POST" class="col d-flex flex-column align-items-center position-relative justify-content-center">
+        <form action="/examify-platform-ujian/siswa/login" method="POST" class="col d-flex flex-column align-items-center position-relative justify-content-center">
             <div class="flex justify-content-start px-4 py-5 position-absolute top-0" style="width: 100% !important;">
-                <a href="/examify/">
+                <a href="/examify-platform-ujian/">
                     <svg style="top: 2rem !important; left: 2rem !important;" width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.867 34.6667L35.8003 49.6001L32.0003 53.3334L10.667 32.0001L32.0003 10.6667L35.8003 14.4001L20.867 29.3334H53.3337V34.6667H20.867Z" fill="white"/>
                     </svg>
@@ -39,7 +39,7 @@ $css = '../public/css/auth.css';
             <div class="mb-2 text-box d-grid col-12">
                 <button class="btn btn-primary" type="submit">LOG IN</button>
             </div>
-            <p class="fs-6">Belum memiliki akun? <a href="/examify/siswa/register">Daftar disini!</a></p>
+            <p class="fs-6">Belum memiliki akun? <a href="/examify-platform-ujian/siswa/register">Daftar disini!</a></p>
         </form>
         <div class="col-9 p-0">
             <img class="hero-auth" src="../public/images/hero-1.png" alt="">

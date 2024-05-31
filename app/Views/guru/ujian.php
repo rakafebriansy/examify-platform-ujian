@@ -14,7 +14,7 @@ $js = '../public/js/ujian.js';
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <form action="/examify/logout" method="post" class="navbar-nav">
+      <form action="/examify-platform-ujian/logout" method="post" class="navbar-nav">
         <button type="submit" class="rounded-pill p-2 border border-0" style="background-color: white !important;">
           Logout
         </button>
@@ -66,9 +66,9 @@ $js = '../public/js/ujian.js';
                   <td><?= $ujian['mata_pelajaran'];?></td>
                   <td><?= $ujian['token'];?></td>
                   <td>
-                    <form action="/examify/guru/ujian/hapus" data-id="<?= $ujian['id'] ?>" method="post">
+                    <form action="/examify-platform-ujian/guru/ujian/hapus" data-id="<?= $ujian['id'] ?>" method="post">
                       <input type="hidden" name="id" id="" value="<?= $ujian['id'] ?>">
-                      <a href="<?='/examify/guru/soal/' . $ujian['id']?>" class="badge text-bg-primary border border-0" style="text-decoration: none">Detail</a>
+                      <a href="<?='/examify-platform-ujian/guru/soal/' . $ujian['id']?>" class="badge text-bg-primary border border-0" style="text-decoration: none">Detail</a>
                       <button type="button" class="badge text-bg-warning border border-0" data-bs-toggle="modal" data-bs-target="#ubahModal" onclick="fetchUbahUjian(this)">Ubah</button>
                       <button type="submit" class="badge text-bg-danger border border-0">Hapus</button>
                     </form>
@@ -92,7 +92,7 @@ $js = '../public/js/ujian.js';
 
 <div class="modal fade" id="buatModal" tabindex="-1" aria-labelledby="buatModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="/examify/guru/ujian" method="post" class="modal-content">
+    <form action="/examify-platform-ujian/guru/ujian" method="post" class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="buatModalLabel">Tambah Mata Pelajaran</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -134,7 +134,7 @@ $js = '../public/js/ujian.js';
 </div>
 <div class="modal fade" id="ubahModal" tabindex="-1" aria-labelledby="ubahModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="/examify/guru/ujian/ubah" method="post" class="modal-content">
+    <form action="/examify-platform-ujian/guru/ujian/ubah" method="post" class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="ubahModalLabel">Ubah Ujian</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

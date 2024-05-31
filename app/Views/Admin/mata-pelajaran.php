@@ -14,7 +14,7 @@ $css = '../public/css/mata-pelajaran.css';
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <form action="/examify/logout" method="post" class="navbar-nav">
+      <form action="/examify-platform-ujian/logout" method="post" class="navbar-nav">
         <button type="submit" class=" rounded-pill p-2 border border-0" style="background-color: white !important;">
           Logout
         </button>
@@ -60,7 +60,7 @@ $css = '../public/css/mata-pelajaran.css';
                   <th scope="row"><?= $count;?></th>
                   <td><?= $mata_pelajaran->nama;?></td>
                   <td>
-                    <form action="/examify/admin/mata-pelajaran/hapus" method="post">
+                    <form action="/examify-platform-ujian/admin/mata-pelajaran/hapus" method="post">
                       <input type="hidden" name="id" id="" value="<?= $mata_pelajaran->id ?>">
                       <button class="badge text-bg-danger border border-0">Hapus</button>
                     </form>
@@ -84,7 +84,7 @@ $css = '../public/css/mata-pelajaran.css';
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="/examify/admin/mata-pelajaran" method="post" class="modal-content">
+    <form action="/examify-platform-ujian/admin/mata-pelajaran" method="post" class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Mata Pelajaran</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
