@@ -6,11 +6,17 @@ $js = '../public/js/register.js';
 
 <?php ob_start(); ?>
 <main>
-    <div class="row m-0">
+    <div class="row m-0 position-relative">
         <?php if(isset($_SESSION['errors'])): ?>
-            <?php echo $_SESSION['errors'] ?>
-            <script>alert($_SESSION['errors'])</script>
+            <div class="alert alert-danger position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+                <?= $_SESSION['errors'];?>
+            </div>
         <?php unset($_SESSION['errors']); endif ?>
+        <?php if(isset($_SESSION['success'])): ?>
+        <div class="alert alert-primary position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+            <?= $_SESSION['success'];?>
+        </div>
+        <?php unset($_SESSION['success']); endif ?>
         <form action="/examify/siswa/register" method="POST" class="col d-flex flex-column align-items-center justify-content-center">
             <div class="mb-1 text-center">
                 <h3>REGISTRASI</h3>

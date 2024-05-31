@@ -22,7 +22,17 @@ $js = '../public/js/ujian.js';
     </div>
   </div>
 </nav>
-<main>
+<main class="position-relative">
+  <?php if(isset($_SESSION['errors'])): ?>
+      <div class="alert alert-danger position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+          <?= $_SESSION['errors'];?>
+      </div>
+  <?php unset($_SESSION['errors']); endif ?>
+  <?php if(isset($_SESSION['success'])): ?>
+        <div class="alert alert-primary position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+            <?= $_SESSION['success'];?>
+        </div>
+  <?php unset($_SESSION['success']); endif ?>
   <div class="container d-flex justify-content-center flex-column align-items-center p-3">
     <h3>DAFTAR UJIAN</h3>
     <div class="table-container">

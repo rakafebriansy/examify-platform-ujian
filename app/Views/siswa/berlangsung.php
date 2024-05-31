@@ -22,8 +22,18 @@ $js = '../public/js/berlangsung.js';
     </div>
   </div>
 </nav>
-<main>
+<main class="position-relative">
   <div class="container d-flex justify-content-center flex-column align-items-start" style="width:100%">
+    <?php if(isset($_SESSION['errors'])): ?>
+        <div class="alert alert-danger position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+            <?= $_SESSION['errors'];?>
+        </div>
+    <?php unset($_SESSION['errors']); endif ?>
+    <?php if(isset($_SESSION['success'])): ?>
+        <div class="alert alert-primary position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+            <?= $_SESSION['success'];?>
+        </div>
+    <?php unset($_SESSION['success']); endif ?>
     <h3>Halo <?= $siswa->nama;?>, Selamat Datang Kembali!</h3>
     <div class="table-container mt-3 rounded">
       <h4>DAFTAR UJIAN YANG SEDANG BERLANGSUNG</h4>

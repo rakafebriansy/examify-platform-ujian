@@ -6,11 +6,17 @@ $js = '../../public/js/soal.js';
 
 <?php ob_start(); ?>
 <main>
-    <form class="row m-0" action="/examify/siswa/ujian/<?=$ujian['id']?>" method="POST">
+    <form class="row m-0 position-relative" action="/examify/siswa/ujian/<?=$ujian['id']?>" method="POST">
         <?php if(isset($_SESSION['errors'])): ?>
-            <?php echo $_SESSION['errors'] ?>
-            <?= "<script>alert(" . $_SESSION['errors'] . ")</script>" ?>
+            <div class="alert alert-danger position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem; z-index:40 !important" role="alert">
+                <?= $_SESSION['errors'];?>
+            </div>
         <?php unset($_SESSION['errors']); endif ?>
+        <?php if(isset($_SESSION['success'])): ?>
+        <div class="alert alert-primary position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+            <?= $_SESSION['success'];?>
+        </div>
+        <?php unset($_SESSION['success']); endif ?>
         <div class="col-3 d-flex flex-column align-items-center justify-content-start" style="background-color: #052C65;">
             <div class="flex justify-content-start px-4 py-5" style="width: 100% !important;">
                 <a href="/examify/guru/ujian">
