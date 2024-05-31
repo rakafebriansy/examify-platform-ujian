@@ -16,7 +16,14 @@ $css = '../public/css/auth.css';
             <?= $_SESSION['success'];?>
         </div>
         <?php unset($_SESSION['success']); endif ?>
-        <form action="/examify/guru/login" method="POST" class="col d-flex flex-column align-items-center justify-content-center">
+        <form action="/examify/guru/login" method="POST" class="col d-flex flex-column align-items-center justify-content-center position-relative">
+            <div class="flex justify-content-start px-4 py-5 position-absolute top-0" style="width: 100% !important;">
+                <a href="/examify/">
+                    <svg style="top: 2rem !important; left: 2rem !important;" width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.867 34.6667L35.8003 49.6001L32.0003 53.3334L10.667 32.0001L32.0003 10.6667L35.8003 14.4001L20.867 29.3334H53.3337V34.6667H20.867Z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
             <div class="mb-1 text-center">
                 <h3>LOG IN</h3>
                 <p>Silahkan isi NIP dan Kata Sandi anda untuk Login</p>
