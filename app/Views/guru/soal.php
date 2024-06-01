@@ -13,11 +13,11 @@ $js = '../../public/js/soal.js';
             </div>
         <?php unset($_SESSION['errors']); endif ?>
         <?php if(isset($_SESSION['success'])): ?>
-        <div class="alert alert-primary position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+        <div class="alert alert-primary position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem; z-index:40 !important" role="alert">
             <?= $_SESSION['success'];?>
         </div>
         <?php unset($_SESSION['success']); endif ?>
-        <form action="/examify-platform-ujian/guru/soal" method="POST" class="col-3 d-flex flex-column align-items-center justify-content-start">
+        <form action="/examify-platform-ujian/guru/soal" method="POST" class="col-3 d-flex flex-column align-items-center justify-content-start position-fixed" style="background-color: #052C65; min-height:100vh !important">
             <div class="flex justify-content-start px-4 py-5" style="width: 100% !important;">
                 <a href="/examify-platform-ujian/guru/ujian">
                     <svg style="top: 2rem !important; left: 2rem !important;" width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,9 +65,9 @@ $js = '../../public/js/soal.js';
                 <button class="btn btn-primary" type="submit">Tambah</button>
             </div>
         </form>
-        <div class="col-9 p-0 px-5">
-            <div id="body-soal">
-                <ul>
+        <div class="col-9 p-0 px-5 position-absolute" style="right:0;">
+            <div id="body-soal mb-5">
+                <ul class="mb-5">
                     <?php 
                         $count = 0;
                         foreach ($soals as $soal) :

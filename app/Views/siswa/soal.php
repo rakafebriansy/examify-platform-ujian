@@ -13,7 +13,7 @@ $js = '../../public/js/soal.js';
             </div>
         <?php unset($_SESSION['errors']); endif ?>
         <?php if(isset($_SESSION['success'])): ?>
-        <div class="alert alert-primary position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem" role="alert">
+        <div class="alert alert-primary position-absolute start-50 translate-middle" style="max-width:32rem; top:3rem; z-index:40 !important" role="alert">
             <?= $_SESSION['success'];?>
         </div>
         <?php unset($_SESSION['success']); endif ?>
@@ -43,7 +43,7 @@ $js = '../../public/js/soal.js';
         </div>
         <div class="col-9 p-0 px-5 position-absolute" style="right:0;">
             <div id="body-soal">
-                <ul>
+                <ul class="mb-5">
                     <?php 
                         $count = 0;
                         foreach ($soals as $soal) :

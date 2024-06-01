@@ -1,7 +1,7 @@
 //AJAX
 function fetchUbahUjian(btn) {
     id = btn.parentElement.dataset.id;
-    fetch('/examify/ajax/ubah-ujian', {
+    fetch('/examify-platform-ujian/ajax/ubah-ujian', {
         method: 'POST',
         body: new URLSearchParams('id='+id)
     }).then(res => res.json())
