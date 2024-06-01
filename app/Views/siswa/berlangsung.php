@@ -56,7 +56,7 @@ $js = '../public/js/berlangsung.js';
                     <p class="card-text m-0"><?= $ujian['nama_ujian'];?></p>
                     <p class="border-success border m-0 px-2 py-1 rounded">Skor: <?= $ujian['skor'];?></p>
                   </div>
-                    <?php else: ?>
+                <?php else: ?>
                     <p class="card-text"><a href="/examify-platform-ujian/siswa/ujian/<?=$ujian['id']?>" style="color: #052C65; text-decoration:none;"><?= $ujian['nama_ujian'];?></a></p>
                 <?php endif; ?>
               </pp>

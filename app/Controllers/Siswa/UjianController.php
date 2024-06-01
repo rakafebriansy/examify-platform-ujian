@@ -52,6 +52,10 @@ class UjianController
         $jawabans = $cursor->executeNoBind($sql_jawaban,true);
         $jawaban_wrapper = [];
         $jawaban_group = [];
+        if(count($jawabans) <= 0) {
+            $message = 'Soal belum tersedia';
+            View::redirectWith('/examify-platform-ujian/siswa/ujian',$message, true);
+        }
         foreach ($jawabans as $key => $jawaban) {
             $jawaban_group[] = $jawaban;
             if(($key + 1) % 4 == 0) {
