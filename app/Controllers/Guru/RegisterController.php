@@ -32,16 +32,16 @@ class RegisterController
 
                 if($guru->insert()) {
                     $message = 'Akun berhasil didaftarkan';
-                    View::redirectWith('/examify/guru/login',$message);
+                    View::redirectWith('/examify-platform-ujian/guru/login',$message);
                 }
                 $message = 'Akun gagal dibuat';
-                View::redirectWith('/examify/guru/register',$message, true);
+                View::redirectWith('/examify-platform-ujian/guru/register',$message, true);
             }
             $message = 'Akun dengan nama tersebut telah terdaftar';
-            View::redirectWith('/examify/guru/register',$message, true);
+            View::redirectWith('/examify-platform-ujian/guru/register',$message, true);
         }
         $message = $this->guru_register_request->getMessage();
-        View::redirectWith('/examify/guru/register',$message, true);
+        View::redirectWith('/examify-platform-ujian/guru/register',$message, true);
     }
 }
 

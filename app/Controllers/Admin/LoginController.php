@@ -24,13 +24,13 @@ class LoginController
             $admin = Admin::findBy('nama_pengguna',$_POST['nama_pengguna']);
             if(isset($admin) && $_POST['kata_sandi'] == $admin->kata_sandi){
                 $_SESSION['id_admin'] = $admin->id;
-                View::redirectTo('/examify/admin/mata-pelajaran');
+                View::redirectTo('/examify-platform-ujian/admin/mata-pelajaran');
             }
             $message = 'Nama pengguna atau kata sandi salah.';
-            View::redirectWith('/examify/admin/login',$message,true);
+            View::redirectWith('/examify-platform-ujian/admin/login',$message,true);
         }
         $message = $this->admin_login_request->getMessage();
-        View::redirectWith('/examify/admin/login',$message,true);
+        View::redirectWith('/examify-platform-ujian/admin/login',$message,true);
     }
 }
 

@@ -13,7 +13,7 @@ class HomeController
     public function logout()
     {
         session_destroy();
-        View::redirectTo('/examify/');
+        View::redirectTo('/examify-platform-ujian/');
     }
     public function fresh()
     {

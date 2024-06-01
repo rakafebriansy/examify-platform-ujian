@@ -47,13 +47,13 @@ class UjianController
             $ujian->id_guru = $_SESSION['id_guru'];
             if($ujian->insert()) {
                 $message = 'Ujian berhasil ditambahkan.';
-                View::redirectWith('/examify/guru/ujian',$message);
+                View::redirectWith('/examify-platform-ujian/guru/ujian',$message);
             }
             $message = 'Ujian gagal ditambahkan.';
-            View::redirectWith('/examify/guru/ujian',$message,true);
+            View::redirectWith('/examify-platform-ujian/guru/ujian',$message,true);
         }
         $message = $this->guru_buat_ujian_request->getMessage();
-        View::redirectWith('/examify/guru/ujian',$message,true);
+        View::redirectWith('/examify-platform-ujian/guru/ujian',$message,true);
     }
 
     public function hapusUjian()
@@ -62,11 +62,11 @@ class UjianController
             $mata_pelajaran = Ujian::find($_POST['id']);
             if($mata_pelajaran->delete()){
                 $message = 'Ujian berhasil dihapus.';
-                View::redirectWith('/examify/guru/ujian',$message);
+                View::redirectWith('/examify-platform-ujian/guru/ujian',$message);
             }
         }
         $message = 'Ujian gagal dihapus.';
-        View::redirectWith('/examify/guru/ujian',$message,true);
+        View::redirectWith('/examify-platform-ujian/guru/ujian',$message,true);
     }
 
     public function ubahUjian()
@@ -78,13 +78,13 @@ class UjianController
             $ujian->id_mata_pelajaran = $_POST['id_mata_pelajaran'];
             if($ujian->update()) {
                 $message = 'Ujian berhasil ditambahkan.';
-                View::redirectWith('/examify/guru/ujian',$message);
+                View::redirectWith('/examify-platform-ujian/guru/ujian',$message);
             }
             $message = 'Ujian gagal dihapus.';
-            View::redirectWith('/examify/guru/ujian',$message,true);
+            View::redirectWith('/examify-platform-ujian/guru/ujian',$message,true);
         }
         $message = $this->guru_buat_ujian_request->getMessage();
-        View::redirectWith('/examify/guru/ujian',$message,true);
+        View::redirectWith('/examify-platform-ujian/guru/ujian',$message,true);
     }
 
 
@@ -150,14 +150,14 @@ class UjianController
                 $detail_soal->id_soal = $id_soal;
                 if($detail_soal->insert()) {
                     $message = 'Soal berhasil dibuat.';
-                    View::redirectWith('/examify/guru/soal/' . $id_ujian,$message);
+                    View::redirectWith('/examify-platform-ujian/guru/soal/' . $id_ujian,$message);
                 }
             }
             $message = 'Soal gagal dibuat.';
-            View::redirectWith('/examify/guru/soal/' . $id_ujian,$message,true);
+            View::redirectWith('/examify-platform-ujian/guru/soal/' . $id_ujian,$message,true);
         }
         $message = $this->guru_buat_soal_request->getMessage();
-        View::redirectWith('/examify/guru/soal/' . $id_ujian,$message,true);
+        View::redirectWith('/examify-platform-ujian/guru/soal/' . $id_ujian,$message,true);
     }
     
     public function ajaxUbahUjian()

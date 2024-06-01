@@ -97,10 +97,10 @@ class UjianController
         $detail_ujian->skor = $jumlah_benar/count($soals)*100;
         if($detail_ujian->insert()) {
             $message = 'Jawaban berhasil disimpan';
-            View::redirectWith('/examify/siswa/ujian',$message);
+            View::redirectWith('/examify-platform-ujian/siswa/ujian',$message);
         }
         $message = 'Jawaban gagal disimpan';
-        View::redirectWith('/examify/siswa/ujian',$message, true);
+        View::redirectWith('/examify-platform-ujian/siswa/ujian',$message, true);
     }
     public function findUjian(string $keyword)
     {

@@ -23,14 +23,14 @@ class LoginController
             $guru = Guru::findBy('nip',$_POST['nip']);
             if($guru && password_verify($_POST['kata_sandi'],$guru->kata_sandi)){
                 $_SESSION['id_guru'] = $guru->id;
-                View::redirectTo('/examify/guru/ujian');
+                View::redirectTo('/examify-platform-ujian/guru/ujian');
 
             }
             $message = 'NIP atau kata sandi salah.';
-            View::redirectWith('/examify/guru/login',$message,true);
+            View::redirectWith('/examify-platform-ujian/guru/login',$message,true);
         }
         $message = $this->guru_login_request->getMessage();
-        View::redirectWith('/examify/guru/login',$message,true);
+        View::redirectWith('/examify-platform-ujian/guru/login',$message,true);
     }
 }
 ?>

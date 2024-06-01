@@ -33,13 +33,13 @@ class RegisterController
                 $siswa->insert();
     
                 $message = 'Akun telah terdaftar';
-                View::redirectWith('/siswa/login',$message);
+                View::redirectWith('/examify-platform-ujian/siswa/login',$message);
             }
             $message = 'Akun gagal dibuat';
-            View::redirectWith('/siswa/register',$message, true);
+            View::redirectWith('/examify-platform-ujian/siswa/register',$message, true);
         }
         $message = $this->siswa_register_request->getMessage();
-        View::redirectWith('/siswa/register',$message, true);
+        View::redirectWith('/examify-platform-ujian/siswa/register',$message, true);
     }
 }
 

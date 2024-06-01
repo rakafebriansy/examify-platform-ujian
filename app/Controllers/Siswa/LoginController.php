@@ -23,13 +23,13 @@ class LoginController
             $siswa = Siswa::findBy('nis',$_POST['nis']);
             if($siswa && password_verify($_POST['kata_sandi'],$siswa->kata_sandi)){
                 $_SESSION['id_siswa'] = $siswa->id;
-                View::redirectTo('/examify/siswa/ujian');
+                View::redirectTo('/examify-platform-ujian/siswa/ujian');
             }
             $message = 'Nama atau kata sandi salah.';
-            View::redirectWith('/examify/siswa/login',$message,true);
+            View::redirectWith('/examify-platform-ujian/siswa/login',$message,true);
         }
         $message = $this->siswa_login_request->getMessage();
-        View::redirectWith('/examify/siswa/login',$message,true);
+        View::redirectWith('/examify-platform-ujian/siswa/login',$message,true);
     }
 }
 

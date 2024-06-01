@@ -1,4 +1,4 @@
-<?php $title = 'EXAMIFY';
+<?php $title = 'examify-platform-ujian';
 $css = 'public/css/index.css';
 $js = 'public/js/index.js';
 ?>
@@ -19,8 +19,8 @@ $js = 'public/js/index.js';
             Register
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="/examify/siswa/register">Siswa</a></li>
-            <li><a class="dropdown-item" href="/examify/guru/register">Guru</a></li>
+            <li><a class="dropdown-item" href="/examify-platform-ujian/siswa/register">Siswa</a></li>
+            <li><a class="dropdown-item" href="/examify-platform-ujian/guru/register">Guru</a></li>
           </ul>
         </div>
         <div class="dropdown-center">
@@ -28,9 +28,9 @@ $js = 'public/js/index.js';
             Login
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="/examify/siswa/login">Siswa</a></li>
-            <li><a class="dropdown-item" href="/examify/guru/login">Guru</a></li>
-            <li><a class="dropdown-item" href="/examify/admin/login">Admin</a></li>
+            <li><a class="dropdown-item" href="/examify-platform-ujian/siswa/login">Siswa</a></li>
+            <li><a class="dropdown-item" href="/examify-platform-ujian/guru/login">Guru</a></li>
+            <li><a class="dropdown-item" href="/examify-platform-ujian/admin/login">Admin</a></li>
           </ul>
         </div>
       </div>
@@ -106,7 +106,7 @@ $js = 'public/js/index.js';
               <p class="ms-2">Email</p>
             </td>
             <td>
-              <p class="ms-3">: examify@gmail.co.id</p>
+              <p class="ms-3">: examify-platform-ujian@gmail.co.id</p>
             </td>
           </tr>
           <tr>

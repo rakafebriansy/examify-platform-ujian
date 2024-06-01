@@ -28,13 +28,13 @@ class MataPelajaranController
             $mata_pelajaran->id_admin = $_SESSION['id_admin'];
             if($mata_pelajaran->insert()){
                 $message = 'Mata pelajaran berhasil ditambahkan.';
-                View::redirectWith('/examify/admin/mata-pelajaran',$message);
+                View::redirectWith('/examify-platform-ujian/admin/mata-pelajaran',$message);
             }
             $message = 'Mata pelajaran gagal ditambahkan.';
-            View::redirectWith('/examify/admin/mata-pelajaran',$message,true);
+            View::redirectWith('/examify-platform-ujian/admin/mata-pelajaran',$message,true);
         }
         $message = $this->admin_mata_pelajaran_request->getMessage();
-        View::redirectWith('/examify/admin/mata-pelajaran',$message,true);
+        View::redirectWith('/examify-platform-ujian/admin/mata-pelajaran',$message,true);
     }
     public function hapusMataPelajaran()
     {
@@ -42,11 +42,11 @@ class MataPelajaranController
             $mata_pelajaran = MataPelajaran::find($_POST['id']);
             if($mata_pelajaran->delete()){
                 $message = 'Mata pelajaran berhasil dihapus.';
-                View::redirectWith('/examify/admin/mata-pelajaran',$message);
+                View::redirectWith('/examify-platform-ujian/admin/mata-pelajaran',$message);
             }
         }
         $message = 'Mata pelajaran gagal dihapus.';
-        View::redirectWith('/examify/admin/mata-pelajaran',$message,true);
+        View::redirectWith('/examify-platform-ujian/admin/mata-pelajaran',$message,true);
     }
 }
 

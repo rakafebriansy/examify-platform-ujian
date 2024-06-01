@@ -22,7 +22,7 @@ class Router
     }
     public static function run(): void 
     {
-        $path = '/examify/';
+        $path = '/examify-platform-ujian/';
         if (isset($_SERVER['REQUEST_URI'])) $path = $_SERVER['REQUEST_URI'];
         if(str_contains($path,'?')) $path = str_replace('?','',$path);
         $method = $_SERVER['REQUEST_METHOD'];
