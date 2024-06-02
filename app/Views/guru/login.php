@@ -32,9 +32,15 @@ $css = '../public/css/auth.css';
                 <label for="nip" class="form-label">NIP</label>
                 <input type="text" name="nip" class="form-control" id="nip">
             </div>
-            <div class="mb-4 text-box">
+            <div class="mb-3 text-box">
                 <label for="kata_sandi" class="form-label">Kata Sandi</label>
                 <input type="password" name="kata_sandi" class="form-control" id="kata_sandi">
+            </div>
+            <div class="mb-3 form-check" style="width:80%;">
+                <input class="form-check-input" name="ingat_saya" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Ingat saya
+                </label>
             </div>
             <div class="mb-2 text-box d-grid col-12">
                 <button class="btn btn-primary" type="submit">LOG IN</button>

@@ -13,6 +13,9 @@ class LoginController
     }
     public function setLogin()
     {
+        if(isset($_COOKIE['remember_siswa'])) {
+            View::redirectTo('/examify-platform-ujian/siswa/ujian');
+        }
         View::set('siswa/login',[
             'title' => 'Siswa | Login'
         ]);
@@ -23,6 +26,9 @@ class LoginController
             $siswa = Siswa::findBy('nis',$_POST['nis']);
             if($siswa && password_verify($_POST['kata_sandi'],$siswa->kata_sandi)){
                 $_SESSION['id_siswa'] = $siswa->id;
+                if(isset($_POST['ingat_saya'])) {
+                    setcookie('remember_siswa',$siswa->id,time()+86400);
+                }
                 View::redirectTo('/examify-platform-ujian/siswa/ujian');
             }
             $message = 'Nama atau kata sandi salah.';

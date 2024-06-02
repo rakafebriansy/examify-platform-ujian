@@ -13,6 +13,8 @@ class HomeController
     public function logout()
     {
         session_destroy();
+        if(isset($_COOKIE['remember_siswa'])) unset($_COOKIE['remember_siswa']);
+        if(isset($_COOKIE['remember_guru'])) unset($_COOKIE['remember_guru']);
         View::redirectTo('/examify-platform-ujian/');
     }
     public function fresh()
