@@ -54,7 +54,7 @@ $js = '../public/js/berlangsung.js';
                 <?php if(isset($ujian['skor'])): ?>
                   <div class="d-flex justify-content-between">
                     <p class="card-text m-0"><?= $ujian['nama_ujian'];?></p>
-                    <p class="border-success border m-0 px-2 py-1 rounded">Skor: <?= $ujian['skor'];?></p>
+                    <p class="border-success border m-0 px-1 py-1 rounded" style="font-size: 0.7rem;">Skor: <?= $ujian['skor'];?></p>
                   </div>
                 <?php else: ?>
                     <p class="card-text"><a href="/examify-platform-ujian/siswa/ujian/<?=$ujian['id']?>" style="color: #052C65; text-decoration:none;"><?= $ujian['nama_ujian'];?></a></p>

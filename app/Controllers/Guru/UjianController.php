@@ -99,14 +99,14 @@ class UjianController
             SELECT soal.* FROM ujian
             INNER JOIN detail_soal ON (ujian.id = detail_soal.id_ujian)
             INNER JOIN soal ON (soal.id = detail_soal.id_soal)
-            WHERE ujian.id = 1;
+            WHERE ujian.id = $id_ujian;
         SQL;
         $sql_jawaban = <<<SQL
             SELECT jawaban.* FROM ujian
             INNER JOIN detail_soal ON (ujian.id = detail_soal.id_ujian)
             INNER JOIN soal ON (soal.id = detail_soal.id_soal)
             INNER JOIN jawaban ON (jawaban.id_soal = soal.id)
-            WHERE ujian.id = 1;
+            WHERE ujian.id = $id_ujian;
         SQL;
         $ujian = $cursor->executeNoBind($sql_ujian);
 
@@ -159,7 +159,22 @@ class UjianController
         $message = $this->guru_buat_soal_request->getMessage();
         View::redirectWith('/examify-platform-ujian/guru/soal/' . $id_ujian,$message,true);
     }
-    
+    public function setLaporan()
+    {
+        $sql = <<<SQL
+            SELECT u.*, COUNT(du.id) AS jumlah_dikerjakan FROM detail_ujian du
+            JOIN ujian u ON (u.id = du.id_ujian)
+            GROUP BY u.id
+            ORDER BY u.id DESC
+            LIMIT 7;
+        SQL;
+        $cursor = new Cursor();
+        $jumlah_dikerjakan = $cursor->executeNoBind($sql,true);
+        View::set('guru/laporan',[
+            'title' => 'Guru | Laporan',
+            'jumlah_dikerjakan' => json_encode($jumlah_dikerjakan)
+        ]);
+    }
     public function ajaxUbahUjian()
     {
         $id = intval($_POST['id']);

@@ -5,7 +5,7 @@ $js = '../public/js/ujian.js';
 ?>
 
 <?php ob_start(); ?>
-<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary" style="background-color: white !important;">
+<nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary small-shadow" style="background-color: white !important;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img id="logo-label" src="../public/images/logo-label.png" alt="">
@@ -13,7 +13,10 @@ $js = '../public/js/ujian.js';
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse gap-4" id="navbarNavAltMarkup">
+      <a href="/examify-platform-ujian/guru/laporan" style="text-decoration:none; color:black;">
+        Laporan
+      </a>
       <form action="/examify-platform-ujian/logout" method="post" class="navbar-nav">
         <button type="submit" class="rounded-pill p-2 border border-0" style="background-color: white !important;">
           Logout
